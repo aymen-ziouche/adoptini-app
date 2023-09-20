@@ -21,7 +21,6 @@ class AuthRepo implements BaseAuthRepo {
       password: password,
     );
     UserModel user = await remoteUserDB.getCurrentUserData(id: authResult.user!.uid);
-    print("${user.name}  ======> ${user.uid} ");
     await _userDB.saveUser(user);
     return user;
   }
@@ -29,7 +28,6 @@ class AuthRepo implements BaseAuthRepo {
   @override
   Future<UserModel> registerUser({required UserModel user, required String password}) async {
     UserModel myUser = await remoteUserDB.saveUser(user: user, password: password);
-    print("${user.name}  ======> ${user.uid} ");
     await _userDB.saveUser(myUser);
     return myUser;
   }

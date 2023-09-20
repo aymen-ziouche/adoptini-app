@@ -2,14 +2,16 @@ import 'package:adoptini_app/common/theme/adoptini_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class FormInputField extends StatelessWidget {
+class CustomFormInputField extends StatelessWidget {
   final TextEditingController controller;
   final String labelText;
   final String? errorText;
   final String? Function(String?) validator;
   final Widget? suffix;
   final bool obscureText;
-  const FormInputField({
+  final bool numbers;
+  final int lines;
+  const CustomFormInputField({
     super.key,
     required this.controller,
     required this.labelText,
@@ -17,6 +19,7 @@ class FormInputField extends StatelessWidget {
     this.obscureText = false,
     required this.validator,
     this.errorText,
+    required this.numbers, required this.lines,
   });
   @override
   Widget build(BuildContext context) {
@@ -26,17 +29,18 @@ class FormInputField extends StatelessWidget {
       onChanged: (username) {},
       validator: validator,
       style: const TextStyle(
-        fontFamily: 'OpenSans',
         color: Colors.black,
         fontSize: 16,
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.normal,
         letterSpacing: 0,
       ),
+      maxLines: lines,
+      keyboardType: numbers ? TextInputType.number : null,
       decoration: InputDecoration(
-        floatingLabelBehavior: FloatingLabelBehavior.auto,
         contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
         errorText: errorText,
+        
         filled: true,
         fillColor: AdoptiniColors.formFillColor,
         border: OutlineInputBorder(
@@ -48,14 +52,6 @@ class FormInputField extends StatelessWidget {
         labelStyle: TextStyle(
           color: Colors.black.withOpacity(0.5),
           fontWeight: FontWeight.w600,
-        ),
-        hintStyle: const TextStyle(
-          fontFamily: 'OpenSans',
-          color: Colors.green,
-          fontSize: 16,
-          fontWeight: FontWeight.w400,
-          fontStyle: FontStyle.normal,
-          letterSpacing: 0,
         ),
       ),
     );

@@ -126,10 +126,12 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                             SizedBox(
                               height: 40.h,
                             ),
-                            FormInputField(
+                            CustomFormInputField(
                               errorText: _errorText,
                               controller: _nameFieldController,
                               labelText: "Name",
+                              lines: 1,
+                              numbers: false,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return "Name cannot be empty";
@@ -140,10 +142,12 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                             SizedBox(
                               height: 10.h,
                             ),
-                            FormInputField(
+                            CustomFormInputField(
                               errorText: _errorText,
                               controller: _emailFieldController,
                               labelText: "Email",
+                              lines: 1,
+                              numbers: false,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return "Email cannot be empty";
@@ -158,10 +162,12 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                             SizedBox(
                               height: 10.h,
                             ),
-                            FormInputField(
+                            CustomFormInputField(
                               errorText: _errorText,
                               controller: _passwordFieldController,
                               labelText: "Password",
+                              lines: 1,
+                              numbers: false,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return "Password cannot be empty";
@@ -185,10 +191,12 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                             SizedBox(
                               height: 10.h,
                             ),
-                            FormInputField(
+                            CustomFormInputField(
                               errorText: _errorText,
                               controller: _confirmpasswordFieldController,
                               labelText: "Confirm Password",
+                              lines: 1,
+                              numbers: false,
                               validator: (val) {
                                 if (val!.isEmpty) {
                                   return 'Please confirm password!';

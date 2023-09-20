@@ -19,10 +19,8 @@ class RemoteUserDB implements BaseRemoteUserDB {
   Future<UserModel> getCurrentUserData({required String id}) async {
     final userDoc = await _firestore.collection('users').doc(id).get();
     if (userDoc.exists) {
-      print(userDoc);
       return UserModel.fromFirestore(userDoc);
     } else {
-      print("error here");
       throw Exception('User data not found');
     }
   }
@@ -31,14 +29,12 @@ class RemoteUserDB implements BaseRemoteUserDB {
   Future<UserModel> saveUser({required UserModel user, required String password}) async {
     try {
       final authResult = await auth.createUserWithEmailAndPassword(email: user.email, password: password);
-      // Save the user's information on Firestore
       await _firestore.collection('users').doc(authResult.user!.uid).set({
         'name': user.name,
         'email': user.email,
         'city': user.city,
         'country': user.country,
       });
-      print(authResult.user!.email);
       return user;
     } catch (e) {
       throw Exception("failed to save user");

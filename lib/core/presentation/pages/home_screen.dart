@@ -27,46 +27,48 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        foregroundColor: AdoptiniColors.mainColor,
-        leading: IconButton(
-          icon: const Icon(FontAwesomeIcons.bars),
-          onPressed: () {
-            scaffoldKey.currentState!.openDrawer();
-          },
+    return SafeArea(
+      child: Scaffold(
+        key: scaffoldKey,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          foregroundColor: AdoptiniColors.mainColor,
+          leading: IconButton(
+            icon: const Icon(FontAwesomeIcons.bars),
+            onPressed: () {
+              scaffoldKey.currentState!.openDrawer();
+            },
+          ),
         ),
-      ),
-      drawer: AdoptiniDrawer(userCubit: _userCubit),
-      backgroundColor: AdoptiniColors.backgroundColors,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              Image.asset(
-                "assets/images/homeBackground.png",
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 50),
-                alignment: Alignment.center,
-                child: Text(
-                  "Adoptini",
-                  style: GoogleFonts.lemon(
-                    color: AdoptiniColors.mainColor,
-                    fontSize: 31,
-                    fontWeight: FontWeight.w400,
+        drawer: AdoptiniDrawer(userCubit: _userCubit),
+        backgroundColor: AdoptiniColors.backgroundColors,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                Image.asset(
+                  "assets/images/homeBackground.png",
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 50),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Adoptini",
+                    style: GoogleFonts.lemon(
+                      color: AdoptiniColors.mainColor,
+                      fontSize: 31,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

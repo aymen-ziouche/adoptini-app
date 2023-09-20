@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import 'package:isar/isar.dart';
 
 class UserEntity {
@@ -15,12 +9,11 @@ class UserEntity {
   final String country;
 
   const UserEntity({
-   required this.id ,
-   required this.uid ,
-  required  this.name ,
-  required  this.email ,
-  required  this.city ,
-  required  this.country ,
+    required this.id,
+    required this.uid,
+    required this.name,
+    required this.email,
+    required this.city,
+    required this.country,
   });
-
 }

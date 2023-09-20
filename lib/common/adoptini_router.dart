@@ -1,3 +1,4 @@
+import 'package:adoptini_app/core/addPet/presentation/pages/add_pet_screen.dart';
 import 'package:adoptini_app/core/presentation/pages/home_screen.dart';
 import 'package:adoptini_app/auth/presentation/pages/login/login_screen.dart';
 import 'package:adoptini_app/auth/presentation/pages/register/register_screen.dart';
@@ -9,6 +10,7 @@ class AdoptiniRouter {
   static const String login = '/login';
   static const String register = '/register';
   static const String home = '/home';
+  static const String add = '/add';
 
   const AdoptiniRouter._();
 
@@ -33,6 +35,11 @@ class AdoptiniRouter {
         return MaterialPageRoute(
           settings: routeSettings,
           builder: (_) => const HomePage(),
+        );
+      case add:
+        return MaterialPageRoute(
+          settings: routeSettings,
+          builder: (_) => const AddPetScreen(),
         );
       default:
         throw Exception('Route not found!');

@@ -33,13 +33,15 @@ class _SplashScreenState extends State<SplashScreen> {
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          backgroundColor: AdoptiniColors.backgroundColors,
-          body: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 500),
-              child: Center(
-                child: Image.asset("assets/images/logo.png"),
-              )),
+        return SafeArea(
+          child: Scaffold(
+            backgroundColor: AdoptiniColors.backgroundColors,
+            body: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 500),
+                child: Center(
+                  child: Image.asset("assets/images/paw.png"),
+                )),
+          ),
         );
       },
     );

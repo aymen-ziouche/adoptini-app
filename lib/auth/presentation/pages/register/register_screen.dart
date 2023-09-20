@@ -17,11 +17,13 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: AdoptiniColors.backgroundColors,
-      body: SizedBox(
-        width: double.infinity,
-        child: RegisterForm(),
+    return const SafeArea(
+      child: Scaffold(
+        backgroundColor: AdoptiniColors.backgroundColors,
+        body: SizedBox(
+          width: double.infinity,
+          child: RegisterForm(),
+        ),
       ),
     );
   }

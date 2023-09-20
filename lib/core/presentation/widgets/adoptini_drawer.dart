@@ -8,11 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-
-
-
-
 class AdoptiniDrawer extends StatelessWidget {
   const AdoptiniDrawer({
     super.key,
@@ -81,17 +76,23 @@ class AdoptiniDrawer extends StatelessWidget {
               height: 50.h,
             ),
             DrawerListItem(icon: FontAwesomeIcons.cat, text: "Adoptions", onTap: () {}),
-            DrawerListItem(icon: FontAwesomeIcons.plus, text: "Add Pet", onTap: () {}),
+            DrawerListItem(
+                icon: FontAwesomeIcons.plus,
+                text: "Add Pet",
+                onTap: () {
+                  Navigator.of(context).pushNamed(AdoptiniRouter.add);
+                }),
             DrawerListItem(icon: FontAwesomeIcons.heart, text: "Favorites", onTap: () {}),
             DrawerListItem(icon: FontAwesomeIcons.gear, text: "Settings", onTap: () {}),
             DrawerListItem(icon: FontAwesomeIcons.message, text: "Messages", onTap: () {}),
             DrawerListItem(
-                icon: FontAwesomeIcons.doorOpen,
-                text: "Logout",
-                onTap: () {
-                  context.read<UserCubit>().logout();
-                  Navigator.of(context).pushNamed(AdoptiniRouter.login);
-                }),
+              icon: FontAwesomeIcons.doorOpen,
+              text: "Logout",
+              onTap: () {
+                context.read<UserCubit>().logout();
+                Navigator.of(context).pushReplacementNamed(AdoptiniRouter.login);
+              },
+            ),
           ],
         ),
       ),

@@ -126,9 +126,12 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                             SizedBox(
                               height: 40.h,
                             ),
-                            FormInputField(
+                            CustomFormInputField(
                               errorText: _errorText,
                               controller: _emailFieldController,
+                          lines: 1,
+
+                              numbers: false,
                               labelText: "Email",
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
@@ -144,10 +147,13 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                             SizedBox(
                               height: 10.h,
                             ),
-                            FormInputField(
+                            CustomFormInputField(
                               errorText: _errorText,
                               controller: _passwordFieldController,
                               labelText: "Password",
+                          lines: 1,
+
+                              numbers: false,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return "Password cannot be empty";

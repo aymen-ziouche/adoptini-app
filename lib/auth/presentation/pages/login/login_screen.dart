@@ -12,11 +12,13 @@ class LoginPage extends StatefulWidget {
 class _LoginPage extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: AdoptiniColors.backgroundColors,
-      body: SizedBox(
-        width: double.infinity,
-        child: LoginForm(),
+    return const SafeArea(
+      child: Scaffold(
+        backgroundColor: AdoptiniColors.backgroundColors,
+        body: SizedBox(
+          width: double.infinity,
+          child: LoginForm(),
+        ),
       ),
     );
   }
