@@ -1,5 +1,5 @@
 import 'package:adoptini_app/common/theme/adoptini_colors.dart';
-import 'package:adoptini_app/core/addPet/presentation/pages/add_pet_form.dart';
+import 'package:adoptini_app/core/home/presentation/pages/add_pet_screen/add_pet_form.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

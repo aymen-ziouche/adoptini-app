@@ -5,8 +5,9 @@ import 'package:adoptini_app/auth/presentation/cubit/auth_cubit.dart';
 import 'package:adoptini_app/auth/presentation/cubit/user/user_cubit.dart';
 import 'package:adoptini_app/common/adoptini_router.dart';
 import 'package:adoptini_app/common/config.dart';
-import 'package:adoptini_app/core/addPet/domain/usecases/add_pet_usecase.dart';
-import 'package:adoptini_app/core/addPet/presentation/cubit/addpet_cubit.dart';
+import 'package:adoptini_app/core/home/domain/usecases/add_pet_usecase.dart';
+import 'package:adoptini_app/core/home/domain/usecases/fetch_pet_usecase.dart';
+import 'package:adoptini_app/core/home/presentation/cubit/pet_cubit.dart';
 import 'package:adoptini_app/injectable.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -76,9 +77,10 @@ class _AppState extends State<App> with WidgetsBindingObserver {
             locator.get<LogoutUseCase>(),
           ),
         ),
-        BlocProvider<AddpetCubit>(
-          create: (context) => AddpetCubit(
+        BlocProvider<PetCubit>(
+          create: (context) => PetCubit(
             locator.get<AddPetUsecase>(),
+            locator.get<FetchPetUsecase>(),
           ),
         ),
       ],

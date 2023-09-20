@@ -60,7 +60,7 @@ void showImageSelectingDialog(BuildContext context, Function(File) updateImageCa
                               source: ImageSource.camera,
                             );
                             if (pickedFile != null) {
-                              updateImageCallback(File(pickedFile.path)); // Call the callback to update _petImage
+                              updateImageCallback(File(pickedFile.path));
                               Navigator.pop(context);
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(

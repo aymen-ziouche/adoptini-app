@@ -6,8 +6,8 @@ import 'package:adoptini_app/common/enums.dart';
 import 'package:adoptini_app/common/theme/adoptini_colors.dart';
 import 'package:adoptini_app/common/theme/login_theme.dart';
 import 'package:adoptini_app/common/theme/main_button.dart';
-import 'package:adoptini_app/core/addPet/presentation/cubit/addpet_cubit.dart';
-import 'package:adoptini_app/core/addPet/presentation/widgets/image_selecting_dialog.dart';
+import 'package:adoptini_app/core/home/presentation/cubit/pet_cubit.dart';
+import 'package:adoptini_app/core/home/presentation/widgets/image_selecting_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,10 +54,10 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AddpetCubit, AddpetState>(
+    return BlocConsumer<PetCubit, PetState>(
       listener: (context, state) {
         state.whenOrNull(
-          loading: () {
+          addPetloading: () {
             AdoptiniDialog(
               context,
               mainButton: TextButton(
@@ -79,7 +79,7 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
               header: const CircularProgressIndicator(),
             ).show();
           },
-          loaded: () {
+          addPetloaded: () {
             Navigator.of(context).pop();
             _nameFieldController.clear();
             _ageFieldController.clear();
@@ -436,7 +436,7 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                                     FocusManager.instance.primaryFocus?.unfocus();
                                   }
                                   final ownerid = context.read<UserCubit>().user.uid;
-                                  context.read<AddpetCubit>().addPet(
+                                  context.read<PetCubit>().addPet(
                                         _nameFieldController.text,
                                         _ageFieldController.text,
                                         _selectedGender.toString().split(".").last,

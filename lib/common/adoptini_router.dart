@@ -1,5 +1,6 @@
-import 'package:adoptini_app/core/addPet/presentation/pages/add_pet_screen.dart';
-import 'package:adoptini_app/core/presentation/pages/home_screen.dart';
+
+import 'package:adoptini_app/core/home/presentation/pages/add_pet_screen/add_pet_screen.dart';
+import 'package:adoptini_app/core/home/presentation/pages/home_screen/home_screen.dart';
 import 'package:adoptini_app/auth/presentation/pages/login/login_screen.dart';
 import 'package:adoptini_app/auth/presentation/pages/register/register_screen.dart';
 import 'package:adoptini_app/common/splash_screen.dart';
