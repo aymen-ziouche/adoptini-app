@@ -14,7 +14,6 @@ class UserModel extends UserEntity {
     required super.country,
   });
 
-  // Define a factory constructor to create UserModel instances from Firestore data.
   factory UserModel.fromFirestore(DocumentSnapshot snapshot) {
     Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
     return UserModel(

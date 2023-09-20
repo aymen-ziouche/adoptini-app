@@ -27,8 +27,6 @@ class RegisterUsecase {
         city: city,
         country: country,
       );
-
-      // Register the user using the auth repository
       await _authRepository.registerUser(user: userModel, password: password);
 
       return userModel;
