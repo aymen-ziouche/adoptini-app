@@ -220,7 +220,7 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                                           )
                                         : DecorationImage(
                                             image: AssetImage("assets/images/paw.png"),
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.contain,
                                           ),
                                   ),
                                 ),

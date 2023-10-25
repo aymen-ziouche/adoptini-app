@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:adoptini_app/core/home/data/models/pet_model.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -59,8 +60,8 @@ class RemotePetDB implements BaseRemotePetDB {
       // ));
       final uploadTask = storageRef.putFile(File(image));
       final downloadUrl = await (await uploadTask).ref.getDownloadURL();
-      final apiKey = 'acc_a7c7ad86c5e8c6f';
-      final apiSecret = '7e8d5414525bb1625da7ed4c968e6172';
+      final apiKey = dotenv.get("API_KEY");
+      final apiSecret = dotenv.get("API_SECRET");
       final imageUrl = downloadUrl;
       final url = 'https://api.imagga.com/v2/tags?image_url=' + Uri.encodeComponent(imageUrl);
 

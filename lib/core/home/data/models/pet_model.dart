@@ -31,8 +31,7 @@ class PetModel extends PetEntity {
       image: data['image'],
       latitude: data['latitude'],
       longitude: data['longitude'],
-      // owner: data['owner'],
-      owner: UserModel.fromFirestore(snapshot),
+      owner: UserModel.fromMap(snapshot.get("owner")),
       petId: data["petId"],
       size: data["size"],
     );

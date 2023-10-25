@@ -69,6 +69,7 @@ dependencies:
   swipe_refresh: ^1.0.2
   firebase_messaging: ^14.6.9
   flutter_local_notifications: ^16.1.0
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_test:
@@ -109,7 +110,7 @@ flutter:
     - assets/translations/
     - assets/images/
     - assets/lotties/
-
+    - .env
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
