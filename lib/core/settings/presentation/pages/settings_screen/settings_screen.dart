@@ -7,6 +7,7 @@ import 'package:adoptini_app/common/theme/login_theme.dart';
 import 'package:adoptini_app/core/settings/presentation/cubit/settings_cubit/settings_cubit.dart';
 import 'package:adoptini_app/core/settings/presentation/widgets/language_pop_dialog.dart';
 import 'package:adoptini_app/core/settings/presentation/widgets/settings_row_widget.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
 import 'package:adoptini_app/utils/extensions.dart';
 import 'package:adoptini_app/utils/utils.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -76,13 +77,13 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                         Navigator.of(context).pop();
                       },
                       child: Text(
-                        "Close",
-                        style: LoginTheme.bodyTextSmall
+                        LocaleKeys.close.tr(),
+                        style: AppTheme.bodyTextSmall
                             .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
                       ),
                     ),
-                    title: "Updating your Location",
-                    description: "Please Wait...",
+                    title: LocaleKeys.updating_your_location.tr(),
+                    description: LocaleKeys.please_wait.tr(),
                     header: CircularProgressIndicator(
                       color: Colors.white,
                     )).show();
@@ -100,13 +101,13 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                       Navigator.of(context).pop();
                     },
                     child: Text(
-                      "Close",
-                      style: LoginTheme.bodyTextSmall
+                      LocaleKeys.close.tr(),
+                      style: AppTheme.bodyTextSmall
                           .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
                     ),
                   ),
-                  title: "Success",
-                  description: "Your location has been updated successfully",
+                  title: LocaleKeys.success.tr(),
+                  description: LocaleKeys.location_updated_successfully.tr(),
                   header: const Icon(
                     FontAwesomeIcons.check,
                     color: Colors.white,
@@ -126,12 +127,12 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                       Navigator.of(context).pop();
                     },
                     child: Text(
-                      "Close",
-                      style: LoginTheme.bodyTextSmall
+                      LocaleKeys.close.tr(),
+                      style: AppTheme.bodyTextSmall
                           .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
                     ),
                   ),
-                  title: "An error has occurred",
+                  title: LocaleKeys.error.tr(),
                   description: errorMessage,
                   header: Lottie.asset(
                     'assets/lotties/error.json',
@@ -161,14 +162,15 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                       height: 40.h,
                     ),
                     Text(
-                      "Settings",
+                      LocaleKeys.settings.tr(),
                       style: GoogleFonts.leagueSpartan(fontSize: 40, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: 30.h,
                     ),
                     Text(
-                      "Account",
+                      LocaleKeys.account.tr(),
+                    
                       style: GoogleFonts.leagueSpartan(
                         fontSize: 28,
                       ),
@@ -238,7 +240,8 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                       height: 30.h,
                     ),
                     Text(
-                      "App Settings",
+                      LocaleKeys.app_settings.tr(),
+                      
                       style: GoogleFonts.leagueSpartan(
                         fontSize: 28,
                       ),
@@ -247,7 +250,8 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                       height: 20.h,
                     ),
                     SettingsRowWidget(
-                      title: "Languages",
+                      title: LocaleKeys.languages.tr(),
+
                       avatarColor: AdoptiniColors.mainColor,
                       iconColor: AdoptiniColors.mainColor,
                       icon: FontAwesomeIcons.earthAmericas,
@@ -267,7 +271,7 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                       height: 20.h,
                     ),
                     SettingsRowWidget(
-                      title: "Notifications",
+                      title: LocaleKeys.notifications.tr(),
                       avatarColor: Color(0xff96ADE8),
                       iconColor: Color(0xff2C4BB8),
                       icon: FontAwesomeIcons.solidBell,
@@ -280,7 +284,7 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                       height: 20.h,
                     ),
                     SettingsRowWidget(
-                      title: "Location",
+                      title: LocaleKeys.location.tr(),
                       avatarColor: Color(0xff9C5EDA),
                       iconColor: Color(0xff4C2078),
                       icon: FontAwesomeIcons.locationDot,
@@ -303,7 +307,7 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                                     borderRadius: BorderRadius.circular(15),
                                     border: Border.all(color: Colors.white)),
                                 child: Text(
-                                  "Update My Location",
+                                  LocaleKeys.update_my_location.tr(),
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.leagueSpartan(
                                     fontSize: 22,
@@ -326,7 +330,7 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                                     borderRadius: BorderRadius.circular(15),
                                     border: Border.all(color: Colors.white)),
                                 child: Text(
-                                  "Cancel",
+                                  LocaleKeys.cancel.tr(),
                                   style: GoogleFonts.leagueSpartan(
                                     fontSize: 15,
                                     color: Colors.white,
@@ -336,9 +340,9 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                               ),
                             ),
                           ),
-                          title: "Change Saved Location",
+                          title: LocaleKeys.change_saved_location.tr(),
                           description:
-                              "Are you sure you want to update your saved location to your current location?",
+                              LocaleKeys.confirm_change_location.tr(),
                           header: const Icon(
                             FontAwesomeIcons.locationDot,
                             color: Colors.white,
@@ -350,7 +354,7 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                       height: 20.h,
                     ),
                     SettingsRowWidget(
-                      title: "Help",
+                      title: LocaleKeys.help_settings.tr(),
                       avatarColor: Color(0xffEE5D5D),
                       iconColor: Color(0xffB63030),
                       icon: FontAwesomeIcons.lifeRing,

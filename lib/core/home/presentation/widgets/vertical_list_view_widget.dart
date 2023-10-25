@@ -1,6 +1,8 @@
 import 'package:adoptini_app/common/theme/adoptini_colors.dart';
 import 'package:adoptini_app/core/home/data/models/pet_model.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -64,11 +66,11 @@ class VerticalListViewWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    InfoRow(label: "Age:", value: pet.age),
-                    InfoRow(label: "Size:", value: pet.size),
-                    InfoRow(label: "City:", value: pet.city),
-                    InfoRow(label: "Country:", value: pet.country),
-                    InfoRow(label: "Type:", value: pet.type),
+                    InfoRow(label: LocaleKeys.age.tr(), value: pet.age),
+                    InfoRow(label: LocaleKeys.size.tr(), value: pet.size),
+                    InfoRow(label: LocaleKeys.city.tr(), value: pet.city),
+                    InfoRow(label: LocaleKeys.country.tr(), value: pet.country),
+                    InfoRow(label: LocaleKeys.type.tr(), value: pet.type),
                   ],
                 ),
               ),

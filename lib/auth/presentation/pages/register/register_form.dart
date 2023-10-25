@@ -6,7 +6,11 @@ import 'package:adoptini_app/common/adoptini_router.dart';
 import 'package:adoptini_app/common/theme/adoptini_colors.dart';
 import 'package:adoptini_app/common/theme/login_theme.dart';
 import 'package:adoptini_app/common/theme/main_button.dart';
+import 'package:adoptini_app/core/settings/presentation/cubit/settings_cubit/settings_cubit.dart';
+import 'package:adoptini_app/core/settings/presentation/widgets/language_pop_dialog.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
 import 'package:adoptini_app/utils/extensions.dart';
+import 'package:adoptini_app/utils/utils.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -32,8 +36,11 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
   bool _isConfirmPasswordVisible = false;
   bool _isSubmitted = false;
   String? _errorText;
+  late SettingsCubit _settingsCubit;
+
   @override
   void initState() {
+    _settingsCubit = context.read<SettingsCubit>();
     _animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 3000));
     super.initState();
   }
@@ -70,12 +77,12 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  "Close",
-                  style: LoginTheme.bodyTextSmall
+                  LocaleKeys.close.tr(),
+                  style: AppTheme.bodyTextSmall
                       .copyWith(fontWeight: FontWeight.w600, color: Colors.blue, fontSize: 14.sp),
                 ),
               ),
-              title: "An error has occurred",
+              title: LocaleKeys.error.tr(),
               description: errorMessage,
               header: Lottie.asset(
                 'assets/lotties/error.json',
@@ -121,8 +128,8 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                               height: 40.h,
                             ),
                             Text(
-                              "Sign up",
-                              style: LoginTheme.titleTextStyle,
+                              LocaleKeys.register.tr(),
+                              style: AppTheme.titleTextStyle,
                             ),
                             SizedBox(
                               height: 40.h,
@@ -130,12 +137,12 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                             CustomFormInputField(
                               errorText: _errorText,
                               controller: _nameFieldController,
-                              labelText: "Name",
+                              labelText: LocaleKeys.user_name.tr(),
                               lines: 1,
                               numbers: false,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "Name cannot be empty";
+                                  return LocaleKeys.user_name_validator.tr();
                                 }
                                 return null;
                               },
@@ -146,15 +153,15 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                             CustomFormInputField(
                               errorText: _errorText,
                               controller: _emailFieldController,
-                              labelText: "Email",
+                              labelText: LocaleKeys.user_email.tr(),
                               lines: 1,
                               numbers: false,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "Email cannot be empty";
+                                  return LocaleKeys.user_email_validator.tr();
                                 }
                                 if (!EmailValidator.validate(value)) {
-                                  return "invalid email address";
+                                  return LocaleKeys.user_email_error.tr();
                                 }
 
                                 return null;
@@ -166,12 +173,12 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                             CustomFormInputField(
                               errorText: _errorText,
                               controller: _passwordFieldController,
-                              labelText: "Password",
+                              labelText: LocaleKeys.user_password.tr(),
                               lines: 1,
                               numbers: false,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "Password cannot be empty";
+                                  return LocaleKeys.user_password_validator.tr();
                                 }
                                 return null;
                               },
@@ -195,14 +202,14 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                             CustomFormInputField(
                               errorText: _errorText,
                               controller: _confirmpasswordFieldController,
-                              labelText: "Confirm Password",
+                              labelText: LocaleKeys.user_confirm_password.tr(),
                               lines: 1,
                               numbers: false,
                               validator: (val) {
                                 if (val!.isEmpty) {
-                                  return 'Please confirm password!';
+                                  return LocaleKeys.user_confirm_password_validator.tr();
                                 } else if (val != _passwordFieldController.text) {
-                                  return 'Passwords do not match!';
+                                  return LocaleKeys.user_confirm_password_error.tr();
                                 }
                                 return null;
                               },
@@ -231,8 +238,8 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                                   // Navigator.of(context).pushNamed(WergoRouter.resetPassword);
                                 },
                                 child: Text(
-                                  "Forgot Password ?",
-                                  style: LoginTheme.bodyTextSmall,
+                                  LocaleKeys.forgot_password.tr(),
+                                  style: AppTheme.bodyTextSmall,
                                 ),
                               ),
                             ),
@@ -242,7 +249,7 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
 
                             //Login Button
                             MainButton(
-                              text: "Register",
+                              text: LocaleKeys.register.tr(),
                               onTap: () {
                                 setState(() {
                                   _isSubmitted = true;
@@ -266,8 +273,8 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Already have an account? ",
-                                  style: LoginTheme.bodyTextSmall
+                                  LocaleKeys.already_have_account.tr(),
+                                  style: AppTheme.bodyTextSmall
                                       .copyWith(fontSize: 18, color: Colors.black.withOpacity(0.5)),
                                 ),
                                 GestureDetector(
@@ -275,8 +282,8 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                                     Navigator.of(context).pushNamed(AdoptiniRouter.loginScreen);
                                   },
                                   child: Text(
-                                    "Log in",
-                                    style: LoginTheme.bodyTextSmall.copyWith(fontSize: 18),
+                                    LocaleKeys.login.tr(),
+                                    style: AppTheme.bodyTextSmall.copyWith(fontSize: 18),
                                   ),
                                 ),
                               ],
@@ -292,14 +299,15 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                                 child: GestureDetector(
                                   behavior: HitTestBehavior.translucent,
                                   onTap: () async {
-                                    // await LanguagesPopDialog.show(context).then((currentLanguage) {
-                                    //   if (currentLanguage != null) {
-                                    //     _settingsCubit.setSettings(
-                                    //       newSettings: _settingsCubit.settings!.copyWith(appLanguage: currentLanguage),
-                                    //     );
-                                    //     context.setLocale(languageToLocales(currentLanguage));
-                                    //   }
-                                    // });
+                                    await LanguagesPopDialog.show(context).then((currentLanguage) {
+                                      if (currentLanguage != null) {
+                                        _settingsCubit.setSettings(
+                                          newSettings:
+                                              _settingsCubit.settings!.copyWith(appLanguage: currentLanguage),
+                                        );
+                                        context.setLocale(languageToLocales(currentLanguage));
+                                      }
+                                    });
                                   },
                                   child: SizedBox(
                                     width: 100.w,

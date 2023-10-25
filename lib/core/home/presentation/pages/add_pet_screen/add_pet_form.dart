@@ -8,6 +8,8 @@ import 'package:adoptini_app/common/theme/login_theme.dart';
 import 'package:adoptini_app/common/theme/main_button.dart';
 import 'package:adoptini_app/core/home/presentation/cubit/pet_cubit/pet_cubit.dart';
 import 'package:adoptini_app/core/home/presentation/widgets/image_selecting_dialog.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,7 +28,23 @@ enum AddPetType {
   cat,
   dog,
   bird,
-  other,
+  other;
+
+  String tr() {
+    switch (this) {
+      case AddPetType.cat:
+        return LocaleKeys.cat.tr();
+      case AddPetType.dog:
+        return LocaleKeys.dog.tr();
+      case AddPetType.bird:
+        return LocaleKeys.bird.tr();
+      case AddPetType.other:
+        return LocaleKeys.otherPets.tr();
+
+      default:
+        return 'Unknown';
+    }
+  }
 }
 
 class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
@@ -77,13 +95,13 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                     Navigator.of(context).pop();
                   },
                   child: Text(
-                    "Close",
-                    style: LoginTheme.bodyTextSmall
+                    LocaleKeys.close.tr(),
+                    style: AppTheme.bodyTextSmall
                         .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
                   ),
                 ),
-                title: "Adding Pet",
-                description: "Please Wait...",
+                title: LocaleKeys.adding_pet.tr(),
+                description: LocaleKeys.please_wait.tr(),
                 header: CircularProgressIndicator(
                   color: Colors.white,
                 )).show();
@@ -104,13 +122,13 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  "Close",
-                  style: LoginTheme.bodyTextSmall
+                  LocaleKeys.close.tr(),
+                  style: AppTheme.bodyTextSmall
                       .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
                 ),
               ),
-              title: "Your Pet is Added",
-              description: "Your pet is added and waiting for an adopted",
+              title: LocaleKeys.pet_added.tr(),
+              description: LocaleKeys.pet_added_subtitle.tr(),
               header: const Icon(
                 FontAwesomeIcons.check,
                 color: Colors.white,
@@ -130,12 +148,12 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  "Close",
-                  style: LoginTheme.bodyTextSmall
+                  LocaleKeys.close.tr(),
+                  style: AppTheme.bodyTextSmall
                       .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
                 ),
               ),
-              title: "An error has occurred",
+              title: LocaleKeys.error.tr(),
               description: errorMessage,
               header: Lottie.asset(
                 'assets/lotties/error.json',
@@ -179,7 +197,8 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                               height: 20.h,
                             ),
                             Text(
-                              "Add pets!",
+                              "${LocaleKeys.add_pet.tr()}!",
+                              textAlign: TextAlign.center,
                               style: GoogleFonts.lemon(
                                 color: AdoptiniColors.mainColor,
                                 fontSize: 38,
@@ -231,13 +250,13 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                             ),
                             CustomFormInputField(
                               controller: _nameFieldController,
-                              labelText: "Pet Name",
+                              labelText: LocaleKeys.pet_name.tr(),
                               errorText: _errorText,
                               lines: 1,
                               numbers: false,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "Name cannot be empty";
+                                  return LocaleKeys.pet_name_validator.tr();
                                 }
                                 return null;
                               },
@@ -247,13 +266,13 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                             ),
                             CustomFormInputField(
                               controller: _ageFieldController,
-                              labelText: "Pet age",
+                              labelText: LocaleKeys.pet_age.tr(),
                               errorText: _errorText,
                               lines: 1,
                               numbers: true,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "age cannot be empty";
+                                  return LocaleKeys.pet_age_validator.tr();
                                 }
                                 return null;
                               },
@@ -281,7 +300,7 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                                     letterSpacing: 0,
                                   ),
                                   decoration: InputDecoration(
-                                    labelText: "Type",
+                                    labelText: LocaleKeys.type.tr(),
                                     labelStyle: TextStyle(
                                       color: Colors.black.withOpacity(0.5),
                                       fontWeight: FontWeight.w600,
@@ -290,7 +309,7 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                                   ),
                                   validator: (value) {
                                     if (value == null) {
-                                      return "Type cannot be empty";
+                                      return LocaleKeys.pet_type_validator.tr();
                                     }
                                     return null;
                                   },
@@ -304,7 +323,7 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                                         ),
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          type.name,
+                                          type.name.tr(),
                                         ),
                                       ),
                                     );
@@ -340,7 +359,7 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                                     letterSpacing: 0,
                                   ),
                                   decoration: InputDecoration(
-                                    labelText: "Gender",
+                                    labelText: LocaleKeys.pet_gender.tr(),
                                     labelStyle: TextStyle(
                                       color: Colors.black.withOpacity(0.5),
                                       fontWeight: FontWeight.w600,
@@ -349,7 +368,7 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                                   ),
                                   validator: (value) {
                                     if (value == null) {
-                                      return "Gender cannot be empty";
+                                      return LocaleKeys.pet_gender_validator.tr();
                                     }
                                     return null;
                                   },
@@ -363,7 +382,7 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                                         ),
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          gender.name,
+                                          gender.name.tr(),
                                         ),
                                       ),
                                     );
@@ -399,7 +418,7 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                                     letterSpacing: 0,
                                   ),
                                   decoration: InputDecoration(
-                                    labelText: "Size",
+                                    labelText: LocaleKeys.pet_size.tr(),
                                     labelStyle: TextStyle(
                                       color: Colors.black.withOpacity(0.5),
                                       fontWeight: FontWeight.w600,
@@ -408,7 +427,7 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                                   ),
                                   validator: (value) {
                                     if (value == null) {
-                                      return "Size cannot be empty";
+                                      return LocaleKeys.pet_size_validator.tr();
                                     }
                                     return null;
                                   },
@@ -422,7 +441,7 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                                         ),
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          size.name,
+                                          size.name.tr(),
                                         ),
                                       ),
                                     );
@@ -440,13 +459,13 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                             ),
                             CustomFormInputField(
                               controller: _descriptionFieldController,
-                              labelText: "Description",
+                              labelText: LocaleKeys.pet_description.tr(),
                               errorText: _errorText,
                               lines: 5,
                               numbers: false,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "Description cannot be empty";
+                                  return LocaleKeys.pet_description_validator.tr();
                                 }
                                 return null;
                               },
@@ -455,7 +474,7 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                               height: 10.h,
                             ),
                             MainButton(
-                              text: "Add Pet",
+                              text: LocaleKeys.add_pet.tr(),
                               onTap: () async {
                                 if (_formKey.currentState!.validate() && _imageSelected) {
                                   if (!currentFocus.hasPrimaryFocus && currentFocus.hasFocus) {
@@ -475,7 +494,9 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                                 } else if (!_imageSelected) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      content: Text('Please select an image.'),
+                                      content: Text(
+                                        LocaleKeys.please_select_image.tr(),
+                                      ),
                                     ),
                                   );
                                 }

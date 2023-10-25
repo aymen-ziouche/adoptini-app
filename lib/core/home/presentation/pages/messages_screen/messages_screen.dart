@@ -3,6 +3,7 @@ import 'package:adoptini_app/common/theme/adoptini_colors.dart';
 import 'package:adoptini_app/core/home/data/models/conversation_model.dart';
 import 'package:adoptini_app/core/home/data/models/message_model.dart';
 import 'package:adoptini_app/core/home/presentation/cubit/messages_cubit/messages_cubit.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
 import 'package:adoptini_app/utils/extensions.dart';
 import 'package:adoptini_app/utils/utils.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -82,7 +83,9 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   );
                 } else {
                   return Center(
-                    child: Text('No messages yet.'),
+                    child: Text(
+                      LocaleKeys.no_messages.tr(),
+                    ),
                   );
                 }
               },
@@ -109,7 +112,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   child: TextField(
                     controller: _messageFieldController,
                     decoration: InputDecoration(
-                      hintText: 'Send a message',
+                      hintText: LocaleKeys.send_message.tr(),
                       hintStyle: TextStyle(color: AdoptiniColors.mainColor),
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),

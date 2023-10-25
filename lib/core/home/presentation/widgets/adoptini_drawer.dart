@@ -3,6 +3,8 @@ import 'package:adoptini_app/common/adoptini_dialog.dart';
 import 'package:adoptini_app/common/adoptini_router.dart';
 import 'package:adoptini_app/common/theme/adoptini_colors.dart';
 import 'package:adoptini_app/core/home/presentation/widgets/drawer_list_item.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +31,7 @@ class AdoptiniDrawer extends StatelessWidget {
               height: 50.h,
             ),
             Text(
-              "Adopt a Friend !",
+              LocaleKeys.onBoarding_title.tr(),
               style: GoogleFonts.lemon(
                 color: Colors.white,
                 fontSize: 20,
@@ -83,39 +85,39 @@ class AdoptiniDrawer extends StatelessWidget {
             ),
             DrawerListItem(
               icon: FontAwesomeIcons.locationDot,
-              text: "Search Map",
+              text: LocaleKeys.search_map.tr(),
               onTap: () {
                 Navigator.of(context).pushNamed(AdoptiniRouter.mapScreen);
               },
             ),
             DrawerListItem(
                 icon: FontAwesomeIcons.cat,
-                text: "My Pets",
+                text: LocaleKeys.my_pets.tr(),
                 onTap: () {
                   Navigator.of(context).pushNamed(AdoptiniRouter.adoptionsScreen);
                 }),
             DrawerListItem(
                 icon: FontAwesomeIcons.plus,
-                text: "Add Pet",
+                text: LocaleKeys.add_pet.tr(),
                 onTap: () {
                   Navigator.of(context).pushNamed(AdoptiniRouter.addPetScreen);
                 }),
             DrawerListItem(
                 icon: FontAwesomeIcons.heart,
-                text: "Favorites",
+                text: LocaleKeys.favorites.tr(),
                 onTap: () {
                   Navigator.of(context).pushNamed(AdoptiniRouter.favoritesScreen);
                 }),
             DrawerListItem(
                 icon: FontAwesomeIcons.gear,
-                text: "Settings",
+                text: LocaleKeys.settings.tr(),
                 onTap: () {
                   Navigator.of(context).pushNamed(AdoptiniRouter.settingsScreen);
                 }),
             // DrawerListItem(icon: FontAwesomeIcons.message, text: "Messages", onTap: () {}),
             DrawerListItem(
               icon: FontAwesomeIcons.doorOpen,
-              text: "Logout",
+              text: LocaleKeys.logout.tr(),
               onTap: () {
                 AdoptiniDialog(
                   context,
@@ -134,7 +136,7 @@ class AdoptiniDrawer extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15),
                             border: Border.all(color: Colors.white)),
                         child: Text(
-                          "Logout",
+                          LocaleKeys.logout.tr(),
                           textAlign: TextAlign.center,
                           style: GoogleFonts.leagueSpartan(
                             fontSize: 22,
@@ -156,7 +158,7 @@ class AdoptiniDrawer extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15), border: Border.all(color: Colors.white)),
                         child: Text(
-                          "Cancel",
+                          LocaleKeys.cancel.tr(),
                           style: GoogleFonts.leagueSpartan(
                             fontSize: 15,
                             color: Colors.white,
@@ -166,8 +168,8 @@ class AdoptiniDrawer extends StatelessWidget {
                       ),
                     ),
                   ),
-                  title: "Logout",
-                  description: "Are you sure you want to Logout?",
+                  title: LocaleKeys.logout.tr(),
+                  description: LocaleKeys.confirm_logout.tr(),
                   header: const Icon(
                     FontAwesomeIcons.trash,
                     color: Colors.white,

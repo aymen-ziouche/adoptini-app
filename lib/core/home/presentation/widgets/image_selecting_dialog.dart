@@ -2,6 +2,8 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:adoptini_app/common/theme/adoptini_colors.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -41,7 +43,7 @@ void showImageSelectingDialog(BuildContext context, Function(File) updateImageCa
                     ),
                     Center(
                       child: Text(
-                        "Choose an Image !",
+                        LocaleKeys.choose_image.tr(),
                         style: GoogleFonts.lemon(
                           color: Colors.white,
                           fontSize: 20,
@@ -64,9 +66,10 @@ void showImageSelectingDialog(BuildContext context, Function(File) updateImageCa
                               Navigator.pop(context);
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
+                                 SnackBar(
                                   content: Text(
-                                    "No image selected",
+                        LocaleKeys.no_image_selected.tr(),
+                                  
                                   ),
                                 ),
                               );
@@ -92,9 +95,10 @@ void showImageSelectingDialog(BuildContext context, Function(File) updateImageCa
                               Navigator.pop(context);
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
+                                 SnackBar(
                                   content: Text(
-                                    "No image selected",
+                        LocaleKeys.no_image_selected.tr(),
+                                    
                                   ),
                                 ),
                               );

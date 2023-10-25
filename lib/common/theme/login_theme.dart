@@ -2,7 +2,7 @@ import 'package:adoptini_app/common/theme/adoptini_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginTheme {
+class AppTheme {
   static TextStyle titleTextStyle = GoogleFonts.leagueSpartan(
     color: Colors.black,
     fontSize: 46,

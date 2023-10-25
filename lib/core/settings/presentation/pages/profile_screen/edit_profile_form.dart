@@ -5,6 +5,8 @@ import 'package:adoptini_app/common/adoptini_dialog.dart';
 import 'package:adoptini_app/common/theme/adoptini_colors.dart';
 import 'package:adoptini_app/common/theme/login_theme.dart';
 import 'package:adoptini_app/common/theme/main_button.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -78,13 +80,13 @@ class _EditProfileFormState extends State<EditProfileForm> with TickerProviderSt
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  "Close",
-                  style: LoginTheme.bodyTextSmall
+                  LocaleKeys.close.tr(),
+                  style: AppTheme.bodyTextSmall
                       .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
                 ),
               ),
-              title: "Profile updated",
-              description: "Your Profile is updated successfully.",
+              title: LocaleKeys.profile_updated_title.tr(),
+              description: LocaleKeys.profile_updated_subtitle.tr(),
               header: const Icon(
                 FontAwesomeIcons.check,
                 color: Colors.white,
@@ -103,12 +105,12 @@ class _EditProfileFormState extends State<EditProfileForm> with TickerProviderSt
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  "Close",
-                  style: LoginTheme.bodyTextSmall
+                  LocaleKeys.close.tr(),
+                  style: AppTheme.bodyTextSmall
                       .copyWith(fontWeight: FontWeight.w600, color: Colors.blue, fontSize: 14.sp),
                 ),
               ),
-              title: "An error has occurred",
+              title: LocaleKeys.error.tr(),
               description: errorMessage,
               header: Lottie.asset(
                 'assets/lotties/error.json',
@@ -160,8 +162,8 @@ class _EditProfileFormState extends State<EditProfileForm> with TickerProviderSt
                                   height: 40.h,
                                 ),
                                 Text(
-                                  "Edit Profile",
-                                  style: LoginTheme.titleTextStyle,
+                                   LocaleKeys.edit_profile.tr(),
+                                  style: AppTheme.titleTextStyle,
                                 ),
                                 SizedBox(
                                   height: 40.h,
@@ -169,7 +171,7 @@ class _EditProfileFormState extends State<EditProfileForm> with TickerProviderSt
                                 CustomFormInputField(
                                   errorText: _errorText,
                                   controller: _nameFieldController,
-                                  labelText: "Name",
+                                  labelText: LocaleKeys.name.tr(),
                                   hintText: _user.name,
                                   lines: 1,
                                   numbers: false,
@@ -184,7 +186,7 @@ class _EditProfileFormState extends State<EditProfileForm> with TickerProviderSt
                                   height: 20.h,
                                 ),
                                 MainButton(
-                                  text: "Save",
+                                  text: LocaleKeys.save.tr(),
                                   onTap: () {
                                     setState(() {
                                       _isSubmitted = true;

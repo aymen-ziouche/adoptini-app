@@ -6,6 +6,8 @@ import 'package:adoptini_app/common/adoptini_dialog.dart';
 import 'package:adoptini_app/common/adoptini_router.dart';
 import 'package:adoptini_app/common/theme/adoptini_colors.dart';
 import 'package:adoptini_app/core/home/presentation/widgets/background_widget.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -162,7 +164,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 height: 40.h,
                               ),
                               ProfileButtonWidget(
-                                title: "My pets",
+                                title: LocaleKeys.my_pets.tr(),
                                 icon: FontAwesomeIcons.cat,
                                 ontap: () {
                                   Navigator.of(context).pushNamed(AdoptiniRouter.adoptionsScreen);
@@ -172,7 +174,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 height: 20.h,
                               ),
                               ProfileButtonWidget(
-                                title: "Favorites",
+                                title: LocaleKeys.favorites.tr(),
                                 icon: FontAwesomeIcons.heart,
                                 ontap: () {
                                   Navigator.of(context).pushNamed(AdoptiniRouter.favoritesScreen);
@@ -226,7 +228,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     borderRadius: BorderRadius.circular(15),
                                                     border: Border.all(color: Colors.white)),
                                                 child: Text(
-                                                  "Logout",
+                                                  LocaleKeys.logout.tr(),
                                                   textAlign: TextAlign.center,
                                                   style: GoogleFonts.leagueSpartan(
                                                     fontSize: 22,
@@ -249,7 +251,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     borderRadius: BorderRadius.circular(15),
                                                     border: Border.all(color: Colors.white)),
                                                 child: Text(
-                                                  "Cancel",
+                                                  LocaleKeys.cancel.tr(),
                                                   style: GoogleFonts.leagueSpartan(
                                                     fontSize: 15,
                                                     color: Colors.white,
@@ -259,8 +261,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               ),
                                             ),
                                           ),
-                                          title: "Logout",
-                                          description: "Are you sure you want to Logout?",
+                                          title: LocaleKeys.logout.tr(),
+
+                                          description: LocaleKeys.confirm_logout.tr(),
                                           header: const Icon(
                                             FontAwesomeIcons.doorOpen,
                                             color: Colors.white,

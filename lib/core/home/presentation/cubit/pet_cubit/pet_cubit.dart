@@ -5,7 +5,9 @@ import 'package:adoptini_app/core/home/domain/usecases/add_pet_to_favorites_usec
 import 'package:adoptini_app/core/home/domain/usecases/delete_pet_usecase.dart';
 import 'package:adoptini_app/core/home/domain/usecases/fetch_favorites_usecase.dart';
 import 'package:adoptini_app/core/home/domain/usecases/remove_pet_from_favorites_usecase.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
 import 'package:bloc/bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:adoptini_app/core/home/domain/usecases/add_pet_usecase.dart';
@@ -37,7 +39,7 @@ class PetCubit extends Cubit<PetState> {
       await addPetUsecase(name, age, gender, size, type, image, description, owner);
       emit(const PetState.addPetloaded());
     } catch (e) {
-      emit(const PetState.error(errorMessage: "Failed to add pet"));
+      emit(PetState.error(errorMessage: LocaleKeys.failed_to_add_pet.tr()));
     }
   }
 
@@ -51,7 +53,7 @@ class PetCubit extends Cubit<PetState> {
       emit(PetState.petloaded(loadedPets));
       return loadedPets;
     } catch (e) {
-      emit(const PetState.error(errorMessage: "Failed to Load pet"));
+      emit(PetState.error(errorMessage: LocaleKeys.failed_to_load_pets.tr()));
       return [];
     }
   }
@@ -63,7 +65,7 @@ class PetCubit extends Cubit<PetState> {
       favoritePets.add(pet);
       emit(PetState.favoritesloaded(favoritePets));
     } catch (e) {
-      emit(const PetState.error(errorMessage: "Failed to add pet To Favorites"));
+      emit(PetState.error(errorMessage: LocaleKeys.failed_to_add_pet_to_favorites.tr()));
     }
   }
 
@@ -75,7 +77,7 @@ class PetCubit extends Cubit<PetState> {
       favoritePets.remove(pet);
       emit(PetState.favoritesloaded(favoritePets));
     } catch (e) {
-      emit(const PetState.error(errorMessage: "Failed to remove pet from favorites"));
+      emit(PetState.error(errorMessage:  LocaleKeys.failed_to_remove_pet_from_favorites.tr()));
     }
   }
 
@@ -90,7 +92,7 @@ class PetCubit extends Cubit<PetState> {
       fetchedPets.remove(pet);
       emit(PetState.petloaded(fetchedPets));
     } catch (e) {
-      emit(const PetState.error(errorMessage: "Failed to delete pet"));
+      emit(PetState.error(errorMessage: LocaleKeys.failed_to_delete_pet.tr()));
     }
   }
 
@@ -105,7 +107,7 @@ class PetCubit extends Cubit<PetState> {
       emit(PetState.favoritesloaded(favoritePets));
       return favoritePets;
     } catch (e) {
-      emit(const PetState.error(errorMessage: "Failed to Load pet"));
+      emit(PetState.error(errorMessage: LocaleKeys.failed_to_load_pets.tr()));
       return [];
     }
   }

@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:adoptini_app/auth/data/models/user_model.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -94,11 +96,11 @@ class RemotePetDB implements BaseRemotePetDB {
         });
       } else {
         storageRef.delete();
-        throw Exception("Please Upload a clear image of your Pet");
+        throw Exception(LocaleKeys.upload_clear_image.tr());
       }
     } catch (e) {
       Sentry.captureException(e);
-      throw Exception("Failed to save Pet");
+      throw Exception(LocaleKeys.failed_to_save_pet.tr());
     }
   }
 
@@ -139,7 +141,7 @@ class RemotePetDB implements BaseRemotePetDB {
       });
     } catch (e) {
       Sentry.captureException(e);
-      throw Exception("Error adding pet to favorites");
+      throw Exception(LocaleKeys.failed_to_add_pet_to_favorites.tr());
     }
   }
 
@@ -150,7 +152,7 @@ class RemotePetDB implements BaseRemotePetDB {
       await favoritePetDoc.delete();
     } catch (e) {
       Sentry.captureException(e);
-      throw Exception("Error removing pet from favorites");
+      throw Exception(LocaleKeys.failed_to_remove_pet_from_favorites.tr());
     }
   }
 
@@ -170,7 +172,7 @@ class RemotePetDB implements BaseRemotePetDB {
     } catch (e) {
       print("Error fetching favorites: $e");
       Sentry.captureException(e);
-      throw Exception("Error fetching favorites");
+      throw Exception(LocaleKeys.error_fetching_favorites.tr());
     }
   }
 

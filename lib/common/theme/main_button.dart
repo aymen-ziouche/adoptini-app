@@ -23,7 +23,7 @@ class MainButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: LoginTheme.buttonText,
+            style: AppTheme.buttonText,
           ),
         ),
       ),

@@ -8,6 +8,7 @@ import 'package:adoptini_app/common/theme/login_theme.dart';
 import 'package:adoptini_app/common/theme/main_button.dart';
 import 'package:adoptini_app/core/settings/presentation/cubit/settings_cubit/settings_cubit.dart';
 import 'package:adoptini_app/core/settings/presentation/widgets/language_pop_dialog.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
 import 'package:adoptini_app/utils/extensions.dart';
 import 'package:adoptini_app/utils/package_info_wrapper.dart';
 import 'package:adoptini_app/utils/utils.dart';
@@ -71,12 +72,12 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  "Close",
-                  style: LoginTheme.bodyTextSmall
+                  LocaleKeys.close.tr(),
+                  style: AppTheme.bodyTextSmall
                       .copyWith(fontWeight: FontWeight.w600, color: Colors.blue, fontSize: 14.sp),
                 ),
               ),
-              title: "An error has occurred",
+              title: LocaleKeys.error.tr(),
               description: errorMessage,
               header: Lottie.asset(
                 'assets/lotties/error.json',
@@ -126,8 +127,8 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                               height: 40.h,
                             ),
                             Text(
-                              "Login",
-                              style: LoginTheme.titleTextStyle,
+                              LocaleKeys.login.tr(),
+                              style: AppTheme.titleTextStyle,
                             ),
                             SizedBox(
                               height: 40.h,
@@ -137,13 +138,13 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                               controller: _emailFieldController,
                               lines: 1,
                               numbers: false,
-                              labelText: "Email",
+                              labelText: LocaleKeys.user_email.tr(),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "Email cannot be empty";
+                                  return LocaleKeys.user_email_validator.tr();
                                 }
                                 if (!EmailValidator.validate(value)) {
-                                  return "invalid email address";
+                                  return LocaleKeys.user_email_error.tr();
                                 }
 
                                 return null;
@@ -155,12 +156,12 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                             CustomFormInputField(
                               errorText: _errorText,
                               controller: _passwordFieldController,
-                              labelText: "Password",
+                              labelText: LocaleKeys.user_password.tr(),
                               lines: 1,
                               numbers: false,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "Password cannot be empty";
+                                  return LocaleKeys.user_password_validator.tr();
                                 }
                                 return null;
                               },
@@ -189,8 +190,8 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                                   // Navigator.of(context).pushNamed(WergoRouter.resetPassword);
                                 },
                                 child: Text(
-                                  "Forgot Password ?",
-                                  style: LoginTheme.bodyTextSmall,
+                                  LocaleKeys.forgot_password.tr(),
+                                  style: AppTheme.bodyTextSmall,
                                 ),
                               ),
                             ),
@@ -198,7 +199,7 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                               height: 20.h,
                             ),
                             MainButton(
-                              text: "Sign in",
+                              text: LocaleKeys.login.tr(),
                               onTap: () {
                                 setState(() {
                                   _isSubmitted = true;
@@ -221,8 +222,8 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "You are New? ",
-                                  style: LoginTheme.bodyTextSmall
+                                  LocaleKeys.are_you_new.tr(),
+                                  style: AppTheme.bodyTextSmall
                                       .copyWith(fontSize: 18, color: Colors.black.withOpacity(0.5)),
                                 ),
                                 GestureDetector(
@@ -230,8 +231,8 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                                     Navigator.of(context).pushNamed(AdoptiniRouter.registerScreen);
                                   },
                                   child: Text(
-                                    "Create account",
-                                    style: LoginTheme.bodyTextSmall.copyWith(fontSize: 18),
+                                    LocaleKeys.create_account.tr(),
+                                    style: AppTheme.bodyTextSmall.copyWith(fontSize: 18),
                                   ),
                                 ),
                               ],
@@ -240,7 +241,7 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                               height: 20.h,
                             ),
                             Text(
-                              "Version: ${PackageInfoWrapper.instance.version}",
+                              "${LocaleKeys.version.tr()} ${PackageInfoWrapper.instance.version}",
                             ),
                             SizedBox(
                               height: 10.h,

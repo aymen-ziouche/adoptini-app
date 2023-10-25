@@ -8,7 +8,9 @@ import 'package:adoptini_app/core/home/domain/usecases/fetch_conversations_useca
 import 'package:adoptini_app/core/home/domain/usecases/listen_to_messages_usecase.dart';
 import 'package:adoptini_app/core/home/domain/usecases/send_msg_about_pet_usercase.dart';
 import 'package:adoptini_app/core/home/domain/usecases/send_msg_usecase.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
 import 'package:bloc/bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'messages_state.dart';
@@ -56,7 +58,7 @@ class MessagesCubit extends Cubit<MessagesState> {
     try {
       await _sendMsgUsecase.call(message, conversationId);
     } catch (e) {
-      emit(const MessagesState.error(errorMessage: "Failed to Send Message"));
+      emit(MessagesState.error(errorMessage: LocaleKeys.failed_to_send_message.tr()));
     }
   }
 

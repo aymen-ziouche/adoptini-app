@@ -4,7 +4,9 @@ import 'package:adoptini_app/auth/data/models/user_model.dart';
 import 'package:adoptini_app/core/home/data/models/conversation_model.dart';
 import 'package:adoptini_app/core/home/data/models/message_model.dart';
 import 'package:adoptini_app/core/home/data/models/pet_model.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:injectable/injectable.dart';
 
 abstract class BaseRemoteMessagesDB {
@@ -40,7 +42,7 @@ class RemoteMessagesDB implements BaseRemoteMessagesDB {
           (convoData['participants'] as List).map((p) => (p as Map)['uid'] as String).toList();
       if (convoParticipants.toSet().containsAll(participantIds.toSet())) {
         if (convoData['petId'] == pet.petId) {
-          throw Exception('Conversation about this pet already exists between these participants');
+          throw Exception(LocaleKeys.conversation_exists.tr());
         }
       }
     }

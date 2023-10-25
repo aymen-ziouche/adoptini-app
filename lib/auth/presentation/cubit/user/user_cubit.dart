@@ -3,7 +3,9 @@ import 'package:adoptini_app/auth/domain/usecases/logout_usecase.dart';
 import 'package:adoptini_app/auth/domain/usecases/start_app_usecase.dart';
 import 'package:adoptini_app/auth/domain/usecases/update_user_location_usecase.dart';
 import 'package:adoptini_app/auth/domain/usecases/update_user_usercase.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
 import 'package:bloc/bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -42,7 +44,7 @@ class UserCubit extends Cubit<UserState> {
       await _updateUserLocationUsecase(uid);
       emit(UserState.updatedLocation());
     } catch (e) {
-      emit(UserState.error(errorMessage: "Error updating location"));
+      emit(UserState.error(errorMessage: LocaleKeys.error_updating_location.tr()));
     }
   }
 
@@ -55,7 +57,7 @@ class UserCubit extends Cubit<UserState> {
       _user = currentUser;
       emit(UserState.userUpdated(user!));
     } catch (e) {
-      emit(UserState.error(errorMessage: "Error updating User"));
+      emit(UserState.error(errorMessage: LocaleKeys.error_updating_user.tr()));
     }
   }
 

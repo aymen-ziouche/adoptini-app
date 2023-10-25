@@ -1,5 +1,7 @@
 import 'package:adoptini_app/auth/data/models/location_data.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
 
@@ -30,12 +32,12 @@ class LocationService implements BaseLocationService {
           country = country;
           return LocationData(city, country, lng, lat);
         }
-        throw Exception('Location data not found');
+        throw Exception(LocaleKeys.location_data_not_found.tr());
       } else {
-        throw Exception('Failed to fetch location data');
+        throw Exception(LocaleKeys.failed_to_fetch_location_data.tr());
       }
     } catch (e) {
-      throw Exception('Error getting location: $e');
+      throw Exception('${LocaleKeys.error_getting_location.tr()} $e');
     }
   }
 }

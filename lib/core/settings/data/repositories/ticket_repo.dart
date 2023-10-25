@@ -3,6 +3,8 @@
 import 'package:adoptini_app/core/settings/data/datasources/ticket_data_source.dart';
 import 'package:adoptini_app/core/settings/domain/entities/ticket_entity.dart';
 import 'package:adoptini_app/core/settings/domain/repositories/base_ticket_repository.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -19,7 +21,7 @@ class TicketsRepository extends BaseTicketsRepository {
     } catch (e) {
       Sentry.captureException(e);
       throw Exception(
-        "Error creating ticket"
+        LocaleKeys.error_creating_ticket.tr(),
       );
     }
   }

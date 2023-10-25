@@ -1,6 +1,8 @@
 import 'package:adoptini_app/auth/data/models/user_model.dart';
 import 'package:adoptini_app/auth/domain/usecases/login_usecase.dart';
 import 'package:adoptini_app/auth/domain/usecases/register_usecase.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -21,7 +23,7 @@ class AuthCubit extends Cubit<AuthState> {
       final user = await _login(email, password);
       emit(AuthState.loginsuccess(user));
     } catch (e) {
-      emit(const AuthState.error("Failed to login"));
+      emit(AuthState.error(LocaleKeys.failed_to_login.tr()));
     }
   }
 
@@ -31,7 +33,7 @@ class AuthCubit extends Cubit<AuthState> {
       final user = await _register(name, email, password);
       emit(AuthState.registersuccess(user));
     } catch (e) {
-      emit(const AuthState.error("Failed to Register"));
+      emit(AuthState.error(LocaleKeys.failed_to_register.tr()));
     }
   }
 }

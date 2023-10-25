@@ -7,6 +7,8 @@ import 'package:adoptini_app/common/theme/login_theme.dart';
 import 'package:adoptini_app/common/theme/main_button.dart';
 import 'package:adoptini_app/core/settings/domain/entities/ticket_entity.dart';
 import 'package:adoptini_app/core/settings/presentation/cubit/tickets_cubit/tickets_cubit.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -60,13 +62,13 @@ class _TicketCreationFormState extends State<TicketCreationForm> with TickerProv
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  "Close",
-                  style: LoginTheme.bodyTextSmall
+                  LocaleKeys.close.tr(),
+                  style: AppTheme.bodyTextSmall
                       .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
                 ),
               ),
-              title: "Adding Ticket",
-              description: "Please Wait...",
+              title: LocaleKeys.adding_ticket.tr(),
+              description: LocaleKeys.please_wait.tr(),
               header: CircularProgressIndicator(
                 color: Colors.white,
               )).show(),
@@ -85,13 +87,13 @@ class _TicketCreationFormState extends State<TicketCreationForm> with TickerProv
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  "Close",
-                  style: LoginTheme.bodyTextSmall
+                  LocaleKeys.close.tr(),
+                  style: AppTheme.bodyTextSmall
                       .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
                 ),
               ),
-              title: "Your Ticket is Sent",
-              description: "Your Ticket is sent and will be viewed",
+              title: LocaleKeys.your_ticket_is_sent_title.tr(),
+              description: LocaleKeys.your_ticket_is_sent_subtitle.tr(),
               header: const Icon(
                 FontAwesomeIcons.check,
                 color: Colors.white,
@@ -111,12 +113,12 @@ class _TicketCreationFormState extends State<TicketCreationForm> with TickerProv
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  "Close",
-                  style: LoginTheme.bodyTextSmall
+                  LocaleKeys.close.tr(),
+                  style: AppTheme.bodyTextSmall
                       .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
                 ),
               ),
-              title: "An error has occurred",
+              title: LocaleKeys.error.tr(),
               description: errorMessage,
               header: Lottie.asset(
                 'assets/lotties/error.json',
@@ -146,14 +148,14 @@ class _TicketCreationFormState extends State<TicketCreationForm> with TickerProv
                       style: const TextStyle(color: Colors.black),
                       controller: _subjectController,
                       decoration: InputDecoration(
-                        labelText: "Subject",
+                        labelText: LocaleKeys.subject.tr(),
                         labelStyle: const TextStyle(
                           color: Colors.black,
                         ),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Please Enter subject";
+                          return LocaleKeys.please_enter_subject.tr();
                         }
                         return null;
                       },
@@ -166,12 +168,12 @@ class _TicketCreationFormState extends State<TicketCreationForm> with TickerProv
                       child: DropdownButtonFormField<TicketType>(
                         style: const TextStyle(color: Colors.black),
                         decoration: InputDecoration(
-                          labelText: "Type",
+                          labelText: LocaleKeys.type.tr(),
                           labelStyle: const TextStyle(color: Colors.black),
                         ),
                         validator: (value) {
                           if (value == null) {
-                            return "Please select a type";
+                            return LocaleKeys.please_enter_type.tr();
                           }
                           return null;
                         },
@@ -186,7 +188,7 @@ class _TicketCreationFormState extends State<TicketCreationForm> with TickerProv
                               color: Colors.transparent,
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                type.toString().split(".").last.toUpperCase(),
+                                type.tr().toString().split(".").last.toUpperCase(),
                               ),
                             ),
                           );
@@ -207,12 +209,12 @@ class _TicketCreationFormState extends State<TicketCreationForm> with TickerProv
                       maxLines: 5,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Please enter a message";
+                          return LocaleKeys.please_enter_message.tr();
                         }
                         return null;
                       },
                       decoration: InputDecoration(
-                        labelText: "Message",
+                        labelText: LocaleKeys.message.tr(),
                         labelStyle: const TextStyle(color: Colors.black),
                         contentPadding: const EdgeInsets.symmetric(vertical: 20.0),
                       ),
@@ -233,7 +235,7 @@ class _TicketCreationFormState extends State<TicketCreationForm> with TickerProv
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                "Please select an image",
+                                LocaleKeys.please_select_image.tr(),
                               ),
                             ),
                           );
@@ -250,7 +252,7 @@ class _TicketCreationFormState extends State<TicketCreationForm> with TickerProv
                             width: 10,
                           ),
                           Text(
-                            "Add an image",
+                            LocaleKeys.image.tr(),
                             style: const TextStyle(color: AdoptiniColors.mainColor, fontSize: 16),
                           ),
                         ],
@@ -260,12 +262,14 @@ class _TicketCreationFormState extends State<TicketCreationForm> with TickerProv
                       height: 100.h,
                     ),
                     MainButton(
-                      text: "send",
+                      text: LocaleKeys.send.tr(),
                       onTap: () async {
                         if (_attachment == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              content: Text("Please upload an image"),
+                              content: Text(
+                                LocaleKeys.please_select_image.tr(),
+                              ),
                             ),
                           );
                         } else if (_formKey.currentState!.validate() && _selectedType != null) {

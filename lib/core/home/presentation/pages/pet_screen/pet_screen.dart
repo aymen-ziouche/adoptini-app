@@ -11,7 +11,9 @@ import 'package:adoptini_app/core/home/presentation/cubit/pet_cubit/pet_cubit.da
 import 'package:adoptini_app/core/home/presentation/widgets/background_widget.dart';
 import 'package:adoptini_app/core/home/presentation/widgets/share_widget.dart';
 import 'package:adoptini_app/core/home/presentation/widgets/vertical_list_view_widget.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -144,7 +146,7 @@ class _PetScreenState extends State<PetScreen> {
                                 borderRadius: BorderRadius.circular(15),
                                 border: Border.all(color: Colors.white)),
                             child: Text(
-                              "Delete Pet",
+                              LocaleKeys.delete_pet.tr(),
                               textAlign: TextAlign.center,
                               style: GoogleFonts.leagueSpartan(
                                 fontSize: 22,
@@ -166,7 +168,8 @@ class _PetScreenState extends State<PetScreen> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15), border: Border.all(color: Colors.white)),
                             child: Text(
-                              "Cancel",
+                  LocaleKeys.cancel.tr(),
+                              
                               style: GoogleFonts.leagueSpartan(
                                 fontSize: 15,
                                 color: Colors.white,
@@ -176,8 +179,8 @@ class _PetScreenState extends State<PetScreen> {
                           ),
                         ),
                       ),
-                      title: "Delete Pet",
-                      description: "Are you sure you want to delete this pet?",
+                      title: LocaleKeys.delete_pet.tr(),
+                      description: LocaleKeys.delete_pet_confirm.tr(),
                       header: const Icon(
                         FontAwesomeIcons.trash,
                         color: Colors.white,
@@ -205,13 +208,14 @@ class _PetScreenState extends State<PetScreen> {
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  "Close",
-                  style: LoginTheme.bodyTextSmall
+                  LocaleKeys.close.tr(),
+                
+                  style: AppTheme.bodyTextSmall
                       .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
                 ),
               ),
-              title: "Sending Message",
-              description: "Please Wait...",
+              title: LocaleKeys.sending_message.tr(),
+              description: LocaleKeys.please_wait.tr(),
               header: CircularProgressIndicator(
                 color: Colors.white,
               )).show(),
@@ -228,13 +232,13 @@ class _PetScreenState extends State<PetScreen> {
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  "Close",
-                  style: LoginTheme.bodyTextSmall
+                  LocaleKeys.close.tr(),
+                  style: AppTheme.bodyTextSmall
                       .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
                 ),
               ),
-              title: "Message Sent",
-              description: "Your Message was Sent, go to messages to continue talking",
+              title: LocaleKeys.message_sent.tr(),
+              description: LocaleKeys.message_sent_subtitle.tr(),
               header: const Icon(
                 FontAwesomeIcons.check,
                 color: Colors.white,
@@ -254,12 +258,12 @@ class _PetScreenState extends State<PetScreen> {
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  "Close",
-                  style: LoginTheme.bodyTextSmall
+                  LocaleKeys.close.tr(),
+                  style: AppTheme.bodyTextSmall
                       .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
                 ),
               ),
-              title: "A problem occured",
+              title: LocaleKeys.error.tr(),
               description: "$errorMessage",
               header: const Icon(
                 FontAwesomeIcons.x,
@@ -284,7 +288,7 @@ class _PetScreenState extends State<PetScreen> {
             Expanded(
               flex: 4,
               child: MainButton(
-                  text: "Adopt",
+                  text: LocaleKeys.adopt.tr(),
                   onTap: () {
                     _messagesCubit.sendMsgAboutPet(widget.pet, currentUser, "Hello ${widget.pet.name}");
 
@@ -387,10 +391,10 @@ class AboutPet extends StatelessWidget {
                   SizedBox(
                     height: 5.h,
                   ),
-                  InfoRow(label: "Age:", value: pet.age),
-                  InfoRow(label: "Location:", value: "${pet.city}, ${pet.country}"),
-                  InfoRow(label: "Breed:", value: pet.type),
-                  InfoRow(label: "Size:", value: pet.size),
+                  InfoRow(label: LocaleKeys.age.tr(), value: pet.age),
+                  InfoRow(label: LocaleKeys.petLocation.tr(), value: "${pet.city}, ${pet.country}"),
+                  InfoRow(label: LocaleKeys.type.tr(), value: pet.type),
+                  InfoRow(label: LocaleKeys.size.tr(), value: pet.size),
                   SizedBox(
                     height: 5.h,
                   ),

@@ -3,7 +3,9 @@ import 'package:adoptini_app/common/adoptini_router.dart';
 import 'package:adoptini_app/common/theme/adoptini_colors.dart';
 import 'package:adoptini_app/core/home/data/models/pet_model.dart';
 import 'package:adoptini_app/core/home/presentation/cubit/pet_cubit/pet_cubit.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -61,7 +63,7 @@ class _AdoptionsScreenState extends State<AdoptionsScreen> with TickerProviderSt
               height: 60.h,
             ),
             Text(
-              "My Pets!",
+              "${LocaleKeys.my_pets.tr()}!",
               style: GoogleFonts.lemon(
                 color: AdoptiniColors.mainColor,
                 fontSize: 38,
@@ -98,7 +100,7 @@ class _AdoptionsScreenState extends State<AdoptionsScreen> with TickerProviderSt
                   )
                 : Center(
                     child: Text(
-                      "You dont have any Pets",
+                      LocaleKeys.no_pets.tr(),
                       style: GoogleFonts.lemon(color: const Color(0xff5E592D).withOpacity(0.5), fontSize: 14),
                     ),
                   )

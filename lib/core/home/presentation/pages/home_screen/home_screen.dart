@@ -11,6 +11,8 @@ import 'package:adoptini_app/common/theme/adoptini_colors.dart';
 import 'package:adoptini_app/core/home/presentation/widgets/horizental_list_view_widget.dart';
 import 'package:adoptini_app/core/home/presentation/widgets/vertical_list_view_widget.dart';
 import 'package:adoptini_app/core/settings/presentation/cubit/settings_cubit/settings_cubit.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -233,7 +235,7 @@ class _HomePageState extends State<HomePage> {
                           height: 5.h,
                         ),
                         Text(
-                          "Choose a pet type:",
+                          LocaleKeys.choose_pet_type.tr(),
                           style: GoogleFonts.lemon(color: const Color(0xff5E592D), fontSize: 14),
                         ),
                         SizedBox(
@@ -262,7 +264,8 @@ class _HomePageState extends State<HomePage> {
                           height: 10.h,
                         ),
                         Text(
-                          "Pets in ${_userCubit.user!.city}, ${_userCubit.user!.country} for Adoption !",
+                          "${LocaleKeys.pets_in.tr()} ${_userCubit.user!.city}, ${_userCubit.user!.country} ${LocaleKeys.for_adoption.tr()}",
+                          textAlign: TextAlign.center,
                           style: GoogleFonts.lemon(color: const Color(0xff5E592D), fontSize: 16),
                         ),
                         SizedBox(
@@ -270,7 +273,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                         if (localPets.isNotEmpty &&
                             (selectedFilter == PetType.all ||
-                                localPets.any((pet) => pet.type == selectedFilter.toString().split('.').last)))
+                                localPets
+                                    .any((pet) => pet.type == selectedFilter.toString().split('.').last.tr())))
                           SizedBox(
                             height: 260.h,
                             child: ListView.builder(
@@ -279,7 +283,7 @@ class _HomePageState extends State<HomePage> {
                               itemBuilder: (context, index) {
                                 PetModel pet = localPets[index];
                                 if (selectedFilter != PetType.all &&
-                                    pet.type != selectedFilter.toString().split('.').last) {
+                                    pet.type != selectedFilter.toString().split('.').last.tr()) {
                                   return SizedBox.shrink();
                                 }
                                 return Padding(
@@ -299,7 +303,8 @@ class _HomePageState extends State<HomePage> {
                             height: 260.h,
                             child: Center(
                               child: Text(
-                                "No matching Pets found",
+                                LocaleKeys.no_pets_found.tr(),
+                                textAlign: TextAlign.center,
                                 style: GoogleFonts.lemon(
                                     color: const Color(0xff5E592D).withOpacity(0.5), fontSize: 14),
                               ),
@@ -309,7 +314,8 @@ class _HomePageState extends State<HomePage> {
                           height: 10.h,
                         ),
                         Text(
-                          "Other pets you may like !",
+                          LocaleKeys.other_pets.tr(),
+                          textAlign: TextAlign.center,
                           style: GoogleFonts.lemon(color: const Color(0xff5E592D), fontSize: 16),
                         ),
                         SizedBox(
@@ -317,7 +323,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                         if (otherPets.isNotEmpty &&
                             (selectedFilter == PetType.all ||
-                                otherPets.any((pet) => pet.type == selectedFilter.toString().split('.').last)))
+                                otherPets
+                                    .any((pet) => pet.type == selectedFilter.toString().split('.').last.tr())))
                           MediaQuery.removePadding(
                             context: context,
                             removeTop: true,
@@ -328,7 +335,7 @@ class _HomePageState extends State<HomePage> {
                               itemBuilder: (context, index) {
                                 PetModel pet = otherPets[index];
                                 if (selectedFilter != PetType.all &&
-                                    pet.type != selectedFilter.toString().split('.').last) {
+                                    pet.type != selectedFilter.toString().split('.').last.tr()) {
                                   return SizedBox.shrink();
                                 }
                                 return Padding(
@@ -348,7 +355,8 @@ class _HomePageState extends State<HomePage> {
                             height: 200.h,
                             child: Center(
                               child: Text(
-                                "No matching Pets found",
+                                LocaleKeys.no_pets_found.tr(),
+                                textAlign: TextAlign.center,
                                 style: GoogleFonts.lemon(
                                     color: const Color(0xff5E592D).withOpacity(0.5), fontSize: 14),
                               ),
@@ -367,7 +375,10 @@ class _HomePageState extends State<HomePage> {
                   Center(
                     child: Container(
                       color: AdoptiniColors.backgroundColors,
-                      child: const Center(child: Text("Failed to load pets")),
+                      child: Center(
+                          child: Text(
+                        LocaleKeys.failed_to_load_pets.tr(),
+                      )),
                     ),
                   ),
                 ],
@@ -381,7 +392,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildFilterContainer(PetType filter) {
     final isActive = selectedFilter == filter;
-    final filterText = filter == PetType.all ? 'All' : filter.toString().split('.').last;
+    final filterText = filter == PetType.all ? 'All' : filter.toString().split('.').last.tr();
 
     return GestureDetector(
       onTap: () {
@@ -398,7 +409,7 @@ class _HomePageState extends State<HomePage> {
         ),
         child: Center(
           child: Text(
-            filterText,
+            filterText.tr(),
             style: GoogleFonts.lemon(
               color: isActive ? Colors.white : Colors.black,
               fontSize: 12,

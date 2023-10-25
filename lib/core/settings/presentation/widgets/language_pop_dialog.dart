@@ -1,7 +1,9 @@
 import 'package:adoptini_app/common/enums.dart';
 import 'package:adoptini_app/common/theme/adoptini_colors.dart';
 import 'package:adoptini_app/core/settings/presentation/cubit/settings_cubit/settings_cubit.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
 import 'package:adoptini_app/utils/extensions.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,7 +32,7 @@ class LanguagesPopDialog {
                   height: 10.h,
                 ),
                 Text(
-                  "Languages",
+                  LocaleKeys.languages.tr(),
                   style: GoogleFonts.leagueSpartan(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
@@ -78,7 +80,7 @@ class _LanguagesRadioButtonsState extends State<_LanguagesRadioButtons> {
             RadioListTile<Languages>(
               activeColor: Colors.white,
               title: Text(
-                language.toString().split(".").last.capitalize(),
+                language.toString().split(".").last.capitalize().tr(),
                 style: GoogleFonts.leagueSpartan(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
                 // style: DevelStyles.dialogTitleText16.copyWith(fontSize: 16),
               ),
@@ -116,7 +118,7 @@ class _LanguagesRadioButtonsState extends State<_LanguagesRadioButtons> {
               Navigator.pop(context, currentLanguage);
             },
             child: Text(
-              "Save",
+              LocaleKeys.save.tr(),
               style: GoogleFonts.leagueSpartan(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
             ),
           ),

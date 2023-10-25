@@ -1,5 +1,7 @@
 import 'package:adoptini_app/common/theme/adoptini_colors.dart';
 import 'package:adoptini_app/core/settings/presentation/pages/help_screen/ticket_form.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -19,7 +21,7 @@ class _HelpScreenState extends State<HelpScreen> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         foregroundColor: AdoptiniColors.mainColor,
-        title: Text("Help"),
+        title: Text(LocaleKeys.help_settings.tr()),
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(FontAwesomeIcons.arrowLeft),

@@ -1,5 +1,7 @@
 import 'package:adoptini_app/common/adoptini_router.dart';
 import 'package:adoptini_app/common/theme/adoptini_colors.dart';
+import 'package:adoptini_app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -53,7 +55,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       height: 20.h,
                     ),
                     Text(
-                      "Adopt a Friend !",
+                      LocaleKeys.onBoarding_title.tr(),
                       textAlign: TextAlign.center,
                       style: GoogleFonts.lemon(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold),
                     ),
@@ -61,7 +63,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       height: 10.h,
                     ),
                     Text(
-                      "Adopt the cutest pet as your playmate.",
+                      LocaleKeys.onBoardin_Subtitle.tr(),
                       textAlign: TextAlign.center,
                       style: GoogleFonts.lemon(
                         color: Colors.white.withOpacity(0.9),
@@ -81,7 +83,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         ),
                         child: Center(
                           child: Text(
-                            'Get Started !',
+                            LocaleKeys.onBoardingCTA.tr(),
                             style: GoogleFonts.lemon(
                               color: Colors.white.withOpacity(0.8),
                               fontSize: 20,
