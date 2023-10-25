@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
-
-
 class DrawerListItem extends StatelessWidget {
   final IconData icon;
   final String text;
@@ -19,7 +16,7 @@ class DrawerListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 80.w),
-      child: InkWell(
+      child: GestureDetector(
         onTap: () {
           onTap();
         },
