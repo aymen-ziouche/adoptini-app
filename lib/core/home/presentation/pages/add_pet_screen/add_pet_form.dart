@@ -6,7 +6,7 @@ import 'package:adoptini_app/common/enums.dart';
 import 'package:adoptini_app/common/theme/adoptini_colors.dart';
 import 'package:adoptini_app/common/theme/login_theme.dart';
 import 'package:adoptini_app/common/theme/main_button.dart';
-import 'package:adoptini_app/core/home/presentation/cubit/pet_cubit.dart';
+import 'package:adoptini_app/core/home/presentation/cubit/pet_cubit/pet_cubit.dart';
 import 'package:adoptini_app/core/home/presentation/widgets/image_selecting_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,19 +22,28 @@ class AddPetForm extends StatefulWidget {
   State<AddPetForm> createState() => _AddPetFormState();
 }
 
+enum AddPetType {
+  cat,
+  dog,
+  bird,
+  other,
+}
+
 class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late final AnimationController _animationController;
   final _nameFieldController = TextEditingController();
   final _ageFieldController = TextEditingController();
   late File _petImage;
+  bool _imageSelected = false;
   PetGender? _selectedGender;
-  PetType? _selectedType;
+  AddPetType? _selectedType;
   PetSize? _selectedSize;
   final _descriptionFieldController = TextEditingController();
   void _updatePetImage(File imageFile) {
     setState(() {
       _petImage = imageFile;
+      _imageSelected = true;
     });
   }
 
@@ -58,26 +67,26 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
       listener: (context, state) {
         state.whenOrNull(
           addPetloading: () {
-            AdoptiniDialog(
-              context,
-              mainButton: TextButton(
-                style: const ButtonStyle(
-                  splashFactory: NoSplash.splashFactory,
-                  overlayColor: MaterialStatePropertyAll(Colors.transparent),
+            AdoptiniDialog(context,
+                mainButton: TextButton(
+                  style: const ButtonStyle(
+                    splashFactory: NoSplash.splashFactory,
+                    overlayColor: MaterialStatePropertyAll(Colors.transparent),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "Close",
+                    style: LoginTheme.bodyTextSmall
+                        .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
+                  ),
                 ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text(
-                  "Close",
-                  style: LoginTheme.bodyTextSmall
-                      .copyWith(fontWeight: FontWeight.w600, color: Colors.blue, fontSize: 14.sp),
-                ),
-              ),
-              title: "Adding Pet",
-              description: "Please Wait...",
-              header: const CircularProgressIndicator(),
-            ).show();
+                title: "Adding Pet",
+                description: "Please Wait...",
+                header: CircularProgressIndicator(
+                  color: Colors.white,
+                )).show();
           },
           addPetloaded: () {
             Navigator.of(context).pop();
@@ -97,15 +106,19 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                 child: Text(
                   "Close",
                   style: LoginTheme.bodyTextSmall
-                      .copyWith(fontWeight: FontWeight.w600, color: Colors.blue, fontSize: 14.sp),
+                      .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
                 ),
               ),
               title: "Your Pet is Added",
-              description: "Your pet is added and waiting for an adopter",
-              header: const Icon(FontAwesomeIcons.check),
+              description: "Your pet is added and waiting for an adopted",
+              header: const Icon(
+                FontAwesomeIcons.check,
+                color: Colors.white,
+              ),
             ).show();
           },
           error: (errorMessage) {
+            Navigator.of(context).pop();
             AdoptiniDialog(
               context,
               mainButton: TextButton(
@@ -119,7 +132,7 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                 child: Text(
                   "Close",
                   style: LoginTheme.bodyTextSmall
-                      .copyWith(fontWeight: FontWeight.w600, color: Colors.blue, fontSize: 14.sp),
+                      .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
                 ),
               ),
               title: "An error has occurred",
@@ -191,13 +204,26 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                                 onTap: () {
                                   showImageSelectingDialog(context, _updatePetImage);
                                 },
-                                child: CircleAvatar(
-                                    radius: 90,
-                                    backgroundColor: AdoptiniColors.backgroundColors.withOpacity(0.9),
-                                    child: Image.asset(
-                                      "assets/images/paw.png",
-                                      fit: BoxFit.contain,
-                                    )),
+                                child: Container(
+                                  height: 150.h,
+                                  width: 150.w,
+                                  decoration: ShapeDecoration(
+                                    shape: CircleBorder(),
+                                    image: _imageSelected
+                                        ? DecorationImage(
+                                            image: FileImage(
+                                              File(
+                                                _petImage.path,
+                                              ),
+                                            ),
+                                            fit: BoxFit.cover,
+                                          )
+                                        : DecorationImage(
+                                            image: AssetImage("assets/images/paw.png"),
+                                            fit: BoxFit.cover,
+                                          ),
+                                  ),
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -245,7 +271,7 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                                   color: AdoptiniColors.formFillColor,
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                child: DropdownButtonFormField<PetType>(
+                                child: DropdownButtonFormField<AddPetType>(
                                   style: const TextStyle(
                                     fontFamily: 'OpenSans',
                                     color: Colors.black,
@@ -269,8 +295,8 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                                     return null;
                                   },
                                   value: _selectedType,
-                                  items: PetType.values.map((type) {
-                                    return DropdownMenuItem<PetType>(
+                                  items: AddPetType.values.map((type) {
+                                    return DropdownMenuItem<AddPetType>(
                                       value: type,
                                       child: Container(
                                         constraints: const BoxConstraints(
@@ -431,11 +457,11 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                             MainButton(
                               text: "Add Pet",
                               onTap: () async {
-                                if (_formKey.currentState!.validate()) {
+                                if (_formKey.currentState!.validate() && _imageSelected) {
                                   if (!currentFocus.hasPrimaryFocus && currentFocus.hasFocus) {
                                     FocusManager.instance.primaryFocus?.unfocus();
                                   }
-                                  final ownerid = context.read<UserCubit>().user.uid;
+                                  final owner = context.read<UserCubit>().user;
                                   context.read<PetCubit>().addPet(
                                         _nameFieldController.text,
                                         _ageFieldController.text,
@@ -444,8 +470,14 @@ class _AddPetFormState extends State<AddPetForm> with TickerProviderStateMixin {
                                         _selectedType.toString().split(".").last,
                                         _petImage.path,
                                         _descriptionFieldController.text,
-                                        ownerid,
+                                        owner!,
                                       );
+                                } else if (!_imageSelected) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Please select an image.'),
+                                    ),
+                                  );
                                 }
                               },
                             ),

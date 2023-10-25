@@ -22,7 +22,8 @@ mixin _$PetState {
     required TResult Function() addPetloading,
     required TResult Function() petloading,
     required TResult Function() addPetloaded,
-    required TResult Function(List<PetModel> pets) petloaded,
+    required TResult Function(List<PetModel> loadedpets) petloaded,
+    required TResult Function(List<PetModel> favoritepets) favoritesloaded,
     required TResult Function(String errorMessage) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -32,7 +33,8 @@ mixin _$PetState {
     TResult? Function()? addPetloading,
     TResult? Function()? petloading,
     TResult? Function()? addPetloaded,
-    TResult? Function(List<PetModel> pets)? petloaded,
+    TResult? Function(List<PetModel> loadedpets)? petloaded,
+    TResult? Function(List<PetModel> favoritepets)? favoritesloaded,
     TResult? Function(String errorMessage)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -42,7 +44,8 @@ mixin _$PetState {
     TResult Function()? addPetloading,
     TResult Function()? petloading,
     TResult Function()? addPetloaded,
-    TResult Function(List<PetModel> pets)? petloaded,
+    TResult Function(List<PetModel> loadedpets)? petloaded,
+    TResult Function(List<PetModel> favoritepets)? favoritesloaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) =>
@@ -54,6 +57,7 @@ mixin _$PetState {
     required TResult Function(_PetLoading value) petloading,
     required TResult Function(_AddPetLoaded value) addPetloaded,
     required TResult Function(_PetLoaded value) petloaded,
+    required TResult Function(_FavoritesLoaded value) favoritesloaded,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -64,6 +68,7 @@ mixin _$PetState {
     TResult? Function(_PetLoading value)? petloading,
     TResult? Function(_AddPetLoaded value)? addPetloaded,
     TResult? Function(_PetLoaded value)? petloaded,
+    TResult? Function(_FavoritesLoaded value)? favoritesloaded,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -74,6 +79,7 @@ mixin _$PetState {
     TResult Function(_PetLoading value)? petloading,
     TResult Function(_AddPetLoaded value)? addPetloaded,
     TResult Function(_PetLoaded value)? petloaded,
+    TResult Function(_FavoritesLoaded value)? favoritesloaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -138,7 +144,8 @@ class _$_Initial implements _Initial {
     required TResult Function() addPetloading,
     required TResult Function() petloading,
     required TResult Function() addPetloaded,
-    required TResult Function(List<PetModel> pets) petloaded,
+    required TResult Function(List<PetModel> loadedpets) petloaded,
+    required TResult Function(List<PetModel> favoritepets) favoritesloaded,
     required TResult Function(String errorMessage) error,
   }) {
     return initial();
@@ -151,7 +158,8 @@ class _$_Initial implements _Initial {
     TResult? Function()? addPetloading,
     TResult? Function()? petloading,
     TResult? Function()? addPetloaded,
-    TResult? Function(List<PetModel> pets)? petloaded,
+    TResult? Function(List<PetModel> loadedpets)? petloaded,
+    TResult? Function(List<PetModel> favoritepets)? favoritesloaded,
     TResult? Function(String errorMessage)? error,
   }) {
     return initial?.call();
@@ -164,7 +172,8 @@ class _$_Initial implements _Initial {
     TResult Function()? addPetloading,
     TResult Function()? petloading,
     TResult Function()? addPetloaded,
-    TResult Function(List<PetModel> pets)? petloaded,
+    TResult Function(List<PetModel> loadedpets)? petloaded,
+    TResult Function(List<PetModel> favoritepets)? favoritesloaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
@@ -182,6 +191,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_PetLoading value) petloading,
     required TResult Function(_AddPetLoaded value) addPetloaded,
     required TResult Function(_PetLoaded value) petloaded,
+    required TResult Function(_FavoritesLoaded value) favoritesloaded,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -195,6 +205,7 @@ class _$_Initial implements _Initial {
     TResult? Function(_PetLoading value)? petloading,
     TResult? Function(_AddPetLoaded value)? addPetloaded,
     TResult? Function(_PetLoaded value)? petloaded,
+    TResult? Function(_FavoritesLoaded value)? favoritesloaded,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -208,6 +219,7 @@ class _$_Initial implements _Initial {
     TResult Function(_PetLoading value)? petloading,
     TResult Function(_AddPetLoaded value)? addPetloaded,
     TResult Function(_PetLoaded value)? petloaded,
+    TResult Function(_FavoritesLoaded value)? favoritesloaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -264,7 +276,8 @@ class _$_AddPetLoading implements _AddPetLoading {
     required TResult Function() addPetloading,
     required TResult Function() petloading,
     required TResult Function() addPetloaded,
-    required TResult Function(List<PetModel> pets) petloaded,
+    required TResult Function(List<PetModel> loadedpets) petloaded,
+    required TResult Function(List<PetModel> favoritepets) favoritesloaded,
     required TResult Function(String errorMessage) error,
   }) {
     return addPetloading();
@@ -277,7 +290,8 @@ class _$_AddPetLoading implements _AddPetLoading {
     TResult? Function()? addPetloading,
     TResult? Function()? petloading,
     TResult? Function()? addPetloaded,
-    TResult? Function(List<PetModel> pets)? petloaded,
+    TResult? Function(List<PetModel> loadedpets)? petloaded,
+    TResult? Function(List<PetModel> favoritepets)? favoritesloaded,
     TResult? Function(String errorMessage)? error,
   }) {
     return addPetloading?.call();
@@ -290,7 +304,8 @@ class _$_AddPetLoading implements _AddPetLoading {
     TResult Function()? addPetloading,
     TResult Function()? petloading,
     TResult Function()? addPetloaded,
-    TResult Function(List<PetModel> pets)? petloaded,
+    TResult Function(List<PetModel> loadedpets)? petloaded,
+    TResult Function(List<PetModel> favoritepets)? favoritesloaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
@@ -308,6 +323,7 @@ class _$_AddPetLoading implements _AddPetLoading {
     required TResult Function(_PetLoading value) petloading,
     required TResult Function(_AddPetLoaded value) addPetloaded,
     required TResult Function(_PetLoaded value) petloaded,
+    required TResult Function(_FavoritesLoaded value) favoritesloaded,
     required TResult Function(_Error value) error,
   }) {
     return addPetloading(this);
@@ -321,6 +337,7 @@ class _$_AddPetLoading implements _AddPetLoading {
     TResult? Function(_PetLoading value)? petloading,
     TResult? Function(_AddPetLoaded value)? addPetloaded,
     TResult? Function(_PetLoaded value)? petloaded,
+    TResult? Function(_FavoritesLoaded value)? favoritesloaded,
     TResult? Function(_Error value)? error,
   }) {
     return addPetloading?.call(this);
@@ -334,6 +351,7 @@ class _$_AddPetLoading implements _AddPetLoading {
     TResult Function(_PetLoading value)? petloading,
     TResult Function(_AddPetLoaded value)? addPetloaded,
     TResult Function(_PetLoaded value)? petloaded,
+    TResult Function(_FavoritesLoaded value)? favoritesloaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -390,7 +408,8 @@ class _$_PetLoading implements _PetLoading {
     required TResult Function() addPetloading,
     required TResult Function() petloading,
     required TResult Function() addPetloaded,
-    required TResult Function(List<PetModel> pets) petloaded,
+    required TResult Function(List<PetModel> loadedpets) petloaded,
+    required TResult Function(List<PetModel> favoritepets) favoritesloaded,
     required TResult Function(String errorMessage) error,
   }) {
     return petloading();
@@ -403,7 +422,8 @@ class _$_PetLoading implements _PetLoading {
     TResult? Function()? addPetloading,
     TResult? Function()? petloading,
     TResult? Function()? addPetloaded,
-    TResult? Function(List<PetModel> pets)? petloaded,
+    TResult? Function(List<PetModel> loadedpets)? petloaded,
+    TResult? Function(List<PetModel> favoritepets)? favoritesloaded,
     TResult? Function(String errorMessage)? error,
   }) {
     return petloading?.call();
@@ -416,7 +436,8 @@ class _$_PetLoading implements _PetLoading {
     TResult Function()? addPetloading,
     TResult Function()? petloading,
     TResult Function()? addPetloaded,
-    TResult Function(List<PetModel> pets)? petloaded,
+    TResult Function(List<PetModel> loadedpets)? petloaded,
+    TResult Function(List<PetModel> favoritepets)? favoritesloaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
@@ -434,6 +455,7 @@ class _$_PetLoading implements _PetLoading {
     required TResult Function(_PetLoading value) petloading,
     required TResult Function(_AddPetLoaded value) addPetloaded,
     required TResult Function(_PetLoaded value) petloaded,
+    required TResult Function(_FavoritesLoaded value) favoritesloaded,
     required TResult Function(_Error value) error,
   }) {
     return petloading(this);
@@ -447,6 +469,7 @@ class _$_PetLoading implements _PetLoading {
     TResult? Function(_PetLoading value)? petloading,
     TResult? Function(_AddPetLoaded value)? addPetloaded,
     TResult? Function(_PetLoaded value)? petloaded,
+    TResult? Function(_FavoritesLoaded value)? favoritesloaded,
     TResult? Function(_Error value)? error,
   }) {
     return petloading?.call(this);
@@ -460,6 +483,7 @@ class _$_PetLoading implements _PetLoading {
     TResult Function(_PetLoading value)? petloading,
     TResult Function(_AddPetLoaded value)? addPetloaded,
     TResult Function(_PetLoaded value)? petloaded,
+    TResult Function(_FavoritesLoaded value)? favoritesloaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -516,7 +540,8 @@ class _$_AddPetLoaded implements _AddPetLoaded {
     required TResult Function() addPetloading,
     required TResult Function() petloading,
     required TResult Function() addPetloaded,
-    required TResult Function(List<PetModel> pets) petloaded,
+    required TResult Function(List<PetModel> loadedpets) petloaded,
+    required TResult Function(List<PetModel> favoritepets) favoritesloaded,
     required TResult Function(String errorMessage) error,
   }) {
     return addPetloaded();
@@ -529,7 +554,8 @@ class _$_AddPetLoaded implements _AddPetLoaded {
     TResult? Function()? addPetloading,
     TResult? Function()? petloading,
     TResult? Function()? addPetloaded,
-    TResult? Function(List<PetModel> pets)? petloaded,
+    TResult? Function(List<PetModel> loadedpets)? petloaded,
+    TResult? Function(List<PetModel> favoritepets)? favoritesloaded,
     TResult? Function(String errorMessage)? error,
   }) {
     return addPetloaded?.call();
@@ -542,7 +568,8 @@ class _$_AddPetLoaded implements _AddPetLoaded {
     TResult Function()? addPetloading,
     TResult Function()? petloading,
     TResult Function()? addPetloaded,
-    TResult Function(List<PetModel> pets)? petloaded,
+    TResult Function(List<PetModel> loadedpets)? petloaded,
+    TResult Function(List<PetModel> favoritepets)? favoritesloaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
@@ -560,6 +587,7 @@ class _$_AddPetLoaded implements _AddPetLoaded {
     required TResult Function(_PetLoading value) petloading,
     required TResult Function(_AddPetLoaded value) addPetloaded,
     required TResult Function(_PetLoaded value) petloaded,
+    required TResult Function(_FavoritesLoaded value) favoritesloaded,
     required TResult Function(_Error value) error,
   }) {
     return addPetloaded(this);
@@ -573,6 +601,7 @@ class _$_AddPetLoaded implements _AddPetLoaded {
     TResult? Function(_PetLoading value)? petloading,
     TResult? Function(_AddPetLoaded value)? addPetloaded,
     TResult? Function(_PetLoaded value)? petloaded,
+    TResult? Function(_FavoritesLoaded value)? favoritesloaded,
     TResult? Function(_Error value)? error,
   }) {
     return addPetloaded?.call(this);
@@ -586,6 +615,7 @@ class _$_AddPetLoaded implements _AddPetLoaded {
     TResult Function(_PetLoading value)? petloading,
     TResult Function(_AddPetLoaded value)? addPetloaded,
     TResult Function(_PetLoaded value)? petloaded,
+    TResult Function(_FavoritesLoaded value)? favoritesloaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -606,7 +636,7 @@ abstract class _$$_PetLoadedCopyWith<$Res> {
           _$_PetLoaded value, $Res Function(_$_PetLoaded) then) =
       __$$_PetLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<PetModel> pets});
+  $Res call({List<PetModel> loadedpets});
 }
 
 /// @nodoc
@@ -620,12 +650,12 @@ class __$$_PetLoadedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pets = null,
+    Object? loadedpets = null,
   }) {
     return _then(_$_PetLoaded(
-      null == pets
-          ? _value._pets
-          : pets // ignore: cast_nullable_to_non_nullable
+      null == loadedpets
+          ? _value._loadedpets
+          : loadedpets // ignore: cast_nullable_to_non_nullable
               as List<PetModel>,
     ));
   }
@@ -634,19 +664,20 @@ class __$$_PetLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_PetLoaded implements _PetLoaded {
-  const _$_PetLoaded(final List<PetModel> pets) : _pets = pets;
+  const _$_PetLoaded(final List<PetModel> loadedpets)
+      : _loadedpets = loadedpets;
 
-  final List<PetModel> _pets;
+  final List<PetModel> _loadedpets;
   @override
-  List<PetModel> get pets {
-    if (_pets is EqualUnmodifiableListView) return _pets;
+  List<PetModel> get loadedpets {
+    if (_loadedpets is EqualUnmodifiableListView) return _loadedpets;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_pets);
+    return EqualUnmodifiableListView(_loadedpets);
   }
 
   @override
   String toString() {
-    return 'PetState.petloaded(pets: $pets)';
+    return 'PetState.petloaded(loadedpets: $loadedpets)';
   }
 
   @override
@@ -654,12 +685,13 @@ class _$_PetLoaded implements _PetLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PetLoaded &&
-            const DeepCollectionEquality().equals(other._pets, _pets));
+            const DeepCollectionEquality()
+                .equals(other._loadedpets, _loadedpets));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_pets));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_loadedpets));
 
   @JsonKey(ignore: true)
   @override
@@ -674,10 +706,11 @@ class _$_PetLoaded implements _PetLoaded {
     required TResult Function() addPetloading,
     required TResult Function() petloading,
     required TResult Function() addPetloaded,
-    required TResult Function(List<PetModel> pets) petloaded,
+    required TResult Function(List<PetModel> loadedpets) petloaded,
+    required TResult Function(List<PetModel> favoritepets) favoritesloaded,
     required TResult Function(String errorMessage) error,
   }) {
-    return petloaded(pets);
+    return petloaded(loadedpets);
   }
 
   @override
@@ -687,10 +720,11 @@ class _$_PetLoaded implements _PetLoaded {
     TResult? Function()? addPetloading,
     TResult? Function()? petloading,
     TResult? Function()? addPetloaded,
-    TResult? Function(List<PetModel> pets)? petloaded,
+    TResult? Function(List<PetModel> loadedpets)? petloaded,
+    TResult? Function(List<PetModel> favoritepets)? favoritesloaded,
     TResult? Function(String errorMessage)? error,
   }) {
-    return petloaded?.call(pets);
+    return petloaded?.call(loadedpets);
   }
 
   @override
@@ -700,12 +734,13 @@ class _$_PetLoaded implements _PetLoaded {
     TResult Function()? addPetloading,
     TResult Function()? petloading,
     TResult Function()? addPetloaded,
-    TResult Function(List<PetModel> pets)? petloaded,
+    TResult Function(List<PetModel> loadedpets)? petloaded,
+    TResult Function(List<PetModel> favoritepets)? favoritesloaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
     if (petloaded != null) {
-      return petloaded(pets);
+      return petloaded(loadedpets);
     }
     return orElse();
   }
@@ -718,6 +753,7 @@ class _$_PetLoaded implements _PetLoaded {
     required TResult Function(_PetLoading value) petloading,
     required TResult Function(_AddPetLoaded value) addPetloaded,
     required TResult Function(_PetLoaded value) petloaded,
+    required TResult Function(_FavoritesLoaded value) favoritesloaded,
     required TResult Function(_Error value) error,
   }) {
     return petloaded(this);
@@ -731,6 +767,7 @@ class _$_PetLoaded implements _PetLoaded {
     TResult? Function(_PetLoading value)? petloading,
     TResult? Function(_AddPetLoaded value)? addPetloaded,
     TResult? Function(_PetLoaded value)? petloaded,
+    TResult? Function(_FavoritesLoaded value)? favoritesloaded,
     TResult? Function(_Error value)? error,
   }) {
     return petloaded?.call(this);
@@ -744,6 +781,7 @@ class _$_PetLoaded implements _PetLoaded {
     TResult Function(_PetLoading value)? petloading,
     TResult Function(_AddPetLoaded value)? addPetloaded,
     TResult Function(_PetLoaded value)? petloaded,
+    TResult Function(_FavoritesLoaded value)? favoritesloaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -755,11 +793,183 @@ class _$_PetLoaded implements _PetLoaded {
 }
 
 abstract class _PetLoaded implements PetState {
-  const factory _PetLoaded(final List<PetModel> pets) = _$_PetLoaded;
+  const factory _PetLoaded(final List<PetModel> loadedpets) = _$_PetLoaded;
 
-  List<PetModel> get pets;
+  List<PetModel> get loadedpets;
   @JsonKey(ignore: true)
   _$$_PetLoadedCopyWith<_$_PetLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_FavoritesLoadedCopyWith<$Res> {
+  factory _$$_FavoritesLoadedCopyWith(
+          _$_FavoritesLoaded value, $Res Function(_$_FavoritesLoaded) then) =
+      __$$_FavoritesLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<PetModel> favoritepets});
+}
+
+/// @nodoc
+class __$$_FavoritesLoadedCopyWithImpl<$Res>
+    extends _$PetStateCopyWithImpl<$Res, _$_FavoritesLoaded>
+    implements _$$_FavoritesLoadedCopyWith<$Res> {
+  __$$_FavoritesLoadedCopyWithImpl(
+      _$_FavoritesLoaded _value, $Res Function(_$_FavoritesLoaded) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? favoritepets = null,
+  }) {
+    return _then(_$_FavoritesLoaded(
+      null == favoritepets
+          ? _value._favoritepets
+          : favoritepets // ignore: cast_nullable_to_non_nullable
+              as List<PetModel>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_FavoritesLoaded implements _FavoritesLoaded {
+  const _$_FavoritesLoaded(final List<PetModel> favoritepets)
+      : _favoritepets = favoritepets;
+
+  final List<PetModel> _favoritepets;
+  @override
+  List<PetModel> get favoritepets {
+    if (_favoritepets is EqualUnmodifiableListView) return _favoritepets;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_favoritepets);
+  }
+
+  @override
+  String toString() {
+    return 'PetState.favoritesloaded(favoritepets: $favoritepets)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_FavoritesLoaded &&
+            const DeepCollectionEquality()
+                .equals(other._favoritepets, _favoritepets));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_favoritepets));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_FavoritesLoadedCopyWith<_$_FavoritesLoaded> get copyWith =>
+      __$$_FavoritesLoadedCopyWithImpl<_$_FavoritesLoaded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() addPetloading,
+    required TResult Function() petloading,
+    required TResult Function() addPetloaded,
+    required TResult Function(List<PetModel> loadedpets) petloaded,
+    required TResult Function(List<PetModel> favoritepets) favoritesloaded,
+    required TResult Function(String errorMessage) error,
+  }) {
+    return favoritesloaded(favoritepets);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? addPetloading,
+    TResult? Function()? petloading,
+    TResult? Function()? addPetloaded,
+    TResult? Function(List<PetModel> loadedpets)? petloaded,
+    TResult? Function(List<PetModel> favoritepets)? favoritesloaded,
+    TResult? Function(String errorMessage)? error,
+  }) {
+    return favoritesloaded?.call(favoritepets);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? addPetloading,
+    TResult Function()? petloading,
+    TResult Function()? addPetloaded,
+    TResult Function(List<PetModel> loadedpets)? petloaded,
+    TResult Function(List<PetModel> favoritepets)? favoritesloaded,
+    TResult Function(String errorMessage)? error,
+    required TResult orElse(),
+  }) {
+    if (favoritesloaded != null) {
+      return favoritesloaded(favoritepets);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_AddPetLoading value) addPetloading,
+    required TResult Function(_PetLoading value) petloading,
+    required TResult Function(_AddPetLoaded value) addPetloaded,
+    required TResult Function(_PetLoaded value) petloaded,
+    required TResult Function(_FavoritesLoaded value) favoritesloaded,
+    required TResult Function(_Error value) error,
+  }) {
+    return favoritesloaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_AddPetLoading value)? addPetloading,
+    TResult? Function(_PetLoading value)? petloading,
+    TResult? Function(_AddPetLoaded value)? addPetloaded,
+    TResult? Function(_PetLoaded value)? petloaded,
+    TResult? Function(_FavoritesLoaded value)? favoritesloaded,
+    TResult? Function(_Error value)? error,
+  }) {
+    return favoritesloaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_AddPetLoading value)? addPetloading,
+    TResult Function(_PetLoading value)? petloading,
+    TResult Function(_AddPetLoaded value)? addPetloaded,
+    TResult Function(_PetLoaded value)? petloaded,
+    TResult Function(_FavoritesLoaded value)? favoritesloaded,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (favoritesloaded != null) {
+      return favoritesloaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FavoritesLoaded implements PetState {
+  const factory _FavoritesLoaded(final List<PetModel> favoritepets) =
+      _$_FavoritesLoaded;
+
+  List<PetModel> get favoritepets;
+  @JsonKey(ignore: true)
+  _$$_FavoritesLoadedCopyWith<_$_FavoritesLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -830,7 +1040,8 @@ class _$_Error implements _Error {
     required TResult Function() addPetloading,
     required TResult Function() petloading,
     required TResult Function() addPetloaded,
-    required TResult Function(List<PetModel> pets) petloaded,
+    required TResult Function(List<PetModel> loadedpets) petloaded,
+    required TResult Function(List<PetModel> favoritepets) favoritesloaded,
     required TResult Function(String errorMessage) error,
   }) {
     return error(errorMessage);
@@ -843,7 +1054,8 @@ class _$_Error implements _Error {
     TResult? Function()? addPetloading,
     TResult? Function()? petloading,
     TResult? Function()? addPetloaded,
-    TResult? Function(List<PetModel> pets)? petloaded,
+    TResult? Function(List<PetModel> loadedpets)? petloaded,
+    TResult? Function(List<PetModel> favoritepets)? favoritesloaded,
     TResult? Function(String errorMessage)? error,
   }) {
     return error?.call(errorMessage);
@@ -856,7 +1068,8 @@ class _$_Error implements _Error {
     TResult Function()? addPetloading,
     TResult Function()? petloading,
     TResult Function()? addPetloaded,
-    TResult Function(List<PetModel> pets)? petloaded,
+    TResult Function(List<PetModel> loadedpets)? petloaded,
+    TResult Function(List<PetModel> favoritepets)? favoritesloaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
@@ -874,6 +1087,7 @@ class _$_Error implements _Error {
     required TResult Function(_PetLoading value) petloading,
     required TResult Function(_AddPetLoaded value) addPetloaded,
     required TResult Function(_PetLoaded value) petloaded,
+    required TResult Function(_FavoritesLoaded value) favoritesloaded,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -887,6 +1101,7 @@ class _$_Error implements _Error {
     TResult? Function(_PetLoading value)? petloading,
     TResult? Function(_AddPetLoaded value)? addPetloaded,
     TResult? Function(_PetLoaded value)? petloaded,
+    TResult? Function(_FavoritesLoaded value)? favoritesloaded,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -900,6 +1115,7 @@ class _$_Error implements _Error {
     TResult Function(_PetLoading value)? petloading,
     TResult Function(_AddPetLoaded value)? addPetloaded,
     TResult Function(_PetLoaded value)? petloaded,
+    TResult Function(_FavoritesLoaded value)? favoritesloaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

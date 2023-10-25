@@ -1,3 +1,5 @@
+import 'package:adoptini_app/auth/data/models/user_model.dart';
+
 class PetEntity {
   final String petId;
   final String name;
@@ -7,7 +9,7 @@ class PetEntity {
   final String type;
   final String image;
   final String description;
-  final String ownerId;
+  final UserModel owner;
   final String city;
   final String country;
   final double latitude;
@@ -22,7 +24,7 @@ class PetEntity {
     required this.type,
     required this.image,
     required this.description,
-    required this.ownerId,
+    required this.owner,
     required this.city,
     required this.country,
     required this.latitude,

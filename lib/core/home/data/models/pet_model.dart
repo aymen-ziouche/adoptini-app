@@ -1,4 +1,4 @@
-
+import 'package:adoptini_app/auth/data/models/user_model.dart';
 import 'package:adoptini_app/core/home/domain/entities/pet_entity.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -12,7 +12,7 @@ class PetModel extends PetEntity {
       required super.type,
       required super.image,
       required super.description,
-      required super.ownerId,
+      required super.owner,
       required super.city,
       required super.country,
       required super.latitude,
@@ -31,7 +31,8 @@ class PetModel extends PetEntity {
       image: data['image'],
       latitude: data['latitude'],
       longitude: data['longitude'],
-      ownerId: data['ownerId'],
+      // owner: data['owner'],
+      owner: UserModel.fromFirestore(snapshot),
       petId: data["petId"],
       size: data["size"],
     );

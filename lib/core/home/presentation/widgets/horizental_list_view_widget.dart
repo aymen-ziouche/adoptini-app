@@ -1,16 +1,10 @@
 import 'package:adoptini_app/common/theme/adoptini_colors.dart';
 import 'package:adoptini_app/core/home/data/models/pet_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:transparent_image/transparent_image.dart';
-
-
-
-
-
-
 
 class HorizentalListViewWidget extends StatelessWidget {
   const HorizentalListViewWidget({
@@ -33,12 +27,18 @@ class HorizentalListViewWidget extends StatelessWidget {
             width: 180.w,
             child: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
-                child: FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: pet.image,
+                child: CachedNetworkImage(
+                  imageUrl: pet.image,
                   fit: BoxFit.cover,
                   width: 180.w,
                   height: 200.h,
+                  progressIndicatorBuilder: (context, url, downloadProgress) => SizedBox(
+                    height: 50.h,
+                    width: 50.w,
+                    child: CircularProgressIndicator(
+                        color: AdoptiniColors.mainColor, value: downloadProgress.progress),
+                  ),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 )),
           ),
           Padding(
@@ -50,12 +50,11 @@ class HorizentalListViewWidget extends StatelessWidget {
                 children: [
                   Text(
                     pet.name,
-                    style: GoogleFonts.lemonada(
-                        fontSize: 18, color: AdoptiniColors.mainColor),
+                    style: GoogleFonts.lemonada(fontSize: 18, color: AdoptiniColors.accentColor),
                   ),
                   pet.gender == "male"
-                      ? const Icon(FontAwesomeIcons.mars)
-                      : const Icon(FontAwesomeIcons.venus),
+                      ? const Icon(FontAwesomeIcons.mars, color: AdoptiniColors.accentColor)
+                      : const Icon(FontAwesomeIcons.venus, color: AdoptiniColors.accentColor),
                 ],
               ),
             ),
@@ -68,7 +67,7 @@ class HorizentalListViewWidget extends StatelessWidget {
                 children: [
                   const Icon(
                     FontAwesomeIcons.locationDot,
-                    color: AdoptiniColors.mainColor,
+                    color: AdoptiniColors.accentColor,
                     size: 15,
                   ),
                   SizedBox(
@@ -76,8 +75,7 @@ class HorizentalListViewWidget extends StatelessWidget {
                   ),
                   Text(
                     "${pet.city}, ${pet.country}",
-                    style: GoogleFonts.leagueSpartan(
-                        fontSize: 15, color: AdoptiniColors.mainColor),
+                    style: GoogleFonts.leagueSpartan(fontSize: 15, color: AdoptiniColors.accentColor),
                   ),
                 ],
               ),
