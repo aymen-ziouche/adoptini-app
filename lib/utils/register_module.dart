@@ -1,4 +1,5 @@
 import 'package:adoptini_app/auth/data/models/user_model.dart';
+import 'package:adoptini_app/core/settings/data/models/settings_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
@@ -13,6 +14,7 @@ abstract class RegisterModule {
       instance = await Isar.open(
         [
           UserModelSchema,
+          SettingsModelSchema,
         ],
         directory: dir.path,
         name: 'LocalDb',
