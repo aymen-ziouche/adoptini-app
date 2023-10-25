@@ -34,8 +34,8 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
   String? _errorText;
   @override
   void initState() {
-    super.initState();
     _animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 3000));
+    super.initState();
   }
 
   @override
@@ -54,8 +54,9 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
       listener: (context, state) {
         state.whenOrNull(
           registersuccess: (user) {
-            context.read<UserCubit>().user = user;
-            Navigator.of(context).pushNamed(AdoptiniRouter.home);
+            context.read<UserCubit>().setUser(user);
+
+            Navigator.of(context).pushNamed(AdoptiniRouter.homeScreen);
           },
           error: (errorMessage) {
             AdoptiniDialog(
@@ -224,7 +225,7 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                             ),
                             Align(
                               alignment: Alignment.centerRight,
-                              child: InkWell(
+                              child: GestureDetector(
                                 onTap: () {
                                   // TODO: navigate to password reset screen
                                   // Navigator.of(context).pushNamed(WergoRouter.resetPassword);
@@ -269,9 +270,9 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                                   style: LoginTheme.bodyTextSmall
                                       .copyWith(fontSize: 18, color: Colors.black.withOpacity(0.5)),
                                 ),
-                                InkWell(
+                                GestureDetector(
                                   onTap: () {
-                                    Navigator.of(context).pushNamed(AdoptiniRouter.login);
+                                    Navigator.of(context).pushNamed(AdoptiniRouter.loginScreen);
                                   },
                                   child: Text(
                                     "Log in",

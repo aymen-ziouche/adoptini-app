@@ -6,8 +6,11 @@ import 'package:adoptini_app/common/adoptini_router.dart';
 import 'package:adoptini_app/common/theme/adoptini_colors.dart';
 import 'package:adoptini_app/common/theme/login_theme.dart';
 import 'package:adoptini_app/common/theme/main_button.dart';
+import 'package:adoptini_app/core/settings/presentation/cubit/settings_cubit/settings_cubit.dart';
+import 'package:adoptini_app/core/settings/presentation/widgets/language_pop_dialog.dart';
 import 'package:adoptini_app/utils/extensions.dart';
 import 'package:adoptini_app/utils/package_info_wrapper.dart';
+import 'package:adoptini_app/utils/utils.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +28,8 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late final AnimationController _animationController;
+  late SettingsCubit _settingsCubit;
+
   final _emailFieldController = TextEditingController();
   final _passwordFieldController = TextEditingController();
   bool _isPasswordVisible = false;
@@ -34,6 +39,7 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 3000));
+    _settingsCubit = context.read<SettingsCubit>();
   }
 
   @override
@@ -50,8 +56,8 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
       listener: (context, state) {
         state.whenOrNull(
           loginsuccess: (user) {
-            context.read<UserCubit>().user = user;
-            Navigator.of(context).pushNamed(AdoptiniRouter.home);
+            context.read<UserCubit>().setUser(user);
+            Navigator.of(context).pushNamed(AdoptiniRouter.homeScreen);
           },
           error: (errorMessage) {
             AdoptiniDialog(
@@ -129,8 +135,7 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                             CustomFormInputField(
                               errorText: _errorText,
                               controller: _emailFieldController,
-                          lines: 1,
-
+                              lines: 1,
                               numbers: false,
                               labelText: "Email",
                               validator: (value) {
@@ -151,8 +156,7 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                               errorText: _errorText,
                               controller: _passwordFieldController,
                               labelText: "Password",
-                          lines: 1,
-
+                              lines: 1,
                               numbers: false,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
@@ -179,7 +183,7 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                             ),
                             Align(
                               alignment: Alignment.centerRight,
-                              child: InkWell(
+                              child: GestureDetector(
                                 onTap: () {
                                   // TODO: navigate to password reset screen
                                   // Navigator.of(context).pushNamed(WergoRouter.resetPassword);
@@ -221,9 +225,9 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                                   style: LoginTheme.bodyTextSmall
                                       .copyWith(fontSize: 18, color: Colors.black.withOpacity(0.5)),
                                 ),
-                                InkWell(
+                                GestureDetector(
                                   onTap: () {
-                                    Navigator.of(context).pushNamed(AdoptiniRouter.register);
+                                    Navigator.of(context).pushNamed(AdoptiniRouter.registerScreen);
                                   },
                                   child: Text(
                                     "Create account",
@@ -246,14 +250,15 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                                 child: GestureDetector(
                                   behavior: HitTestBehavior.translucent,
                                   onTap: () async {
-                                    // await LanguagesPopDialog.show(context).then((currentLanguage) {
-                                    //   if (currentLanguage != null) {
-                                    //     _settingsCubit.setSettings(
-                                    //       newSettings: _settingsCubit.settings!.copyWith(appLanguage: currentLanguage),
-                                    //     );
-                                    //     context.setLocale(languageToLocales(currentLanguage));
-                                    //   }
-                                    // });
+                                    await LanguagesPopDialog.show(context).then((currentLanguage) {
+                                      if (currentLanguage != null) {
+                                        _settingsCubit.setSettings(
+                                          newSettings:
+                                              _settingsCubit.settings!.copyWith(appLanguage: currentLanguage),
+                                        );
+                                        context.setLocale(languageToLocales(currentLanguage));
+                                      }
+                                    });
                                   },
                                   child: SizedBox(
                                     width: 100.w,

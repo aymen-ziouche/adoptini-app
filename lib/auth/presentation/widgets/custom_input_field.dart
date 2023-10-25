@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomFormInputField extends StatelessWidget {
   final TextEditingController controller;
+  final String hintText;
   final String labelText;
   final String? errorText;
   final String? Function(String?) validator;
@@ -17,9 +18,11 @@ class CustomFormInputField extends StatelessWidget {
     required this.labelText,
     this.suffix,
     this.obscureText = false,
+    this.hintText = "",
     required this.validator,
     this.errorText,
-    required this.numbers, required this.lines,
+    required this.numbers,
+    required this.lines,
   });
   @override
   Widget build(BuildContext context) {
@@ -40,7 +43,7 @@ class CustomFormInputField extends StatelessWidget {
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
         errorText: errorText,
-        
+        hintText: hintText,
         filled: true,
         fillColor: AdoptiniColors.formFillColor,
         border: OutlineInputBorder(
