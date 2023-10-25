@@ -28,7 +28,7 @@ class LocationService implements BaseLocationService {
           String country = response.data[0]['country'];
           city = city;
           country = country;
-          return LocationData(city, country);
+          return LocationData(city, country, lng, lat);
         }
         throw Exception('Location data not found');
       } else {

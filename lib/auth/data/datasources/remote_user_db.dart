@@ -5,6 +5,8 @@ import 'package:injectable/injectable.dart';
 
 abstract class BaseRemoteUserDB {
   Future<UserModel> getCurrentUserData({required String id});
+  Future<void> updateUserLocation({required String uid, required double lng, required double lat});
+  Future<void> updateUser({required UserModel currentUser});
   Future<UserModel> saveUser({required UserModel user, required String password});
 }
 
@@ -29,15 +31,39 @@ class RemoteUserDB implements BaseRemoteUserDB {
   Future<UserModel> saveUser({required UserModel user, required String password}) async {
     try {
       final authResult = await auth.createUserWithEmailAndPassword(email: user.email, password: password);
-      await _firestore.collection('users').doc(authResult.user!.uid).set({
+
+      final userData = {
+        'uid': authResult.user!.uid,
         'name': user.name,
         'email': user.email,
+        'longitude': user.longitude,
+        'latitude': user.latitude,
         'city': user.city,
         'country': user.country,
-      });
-      return user;
+      };
+
+      await _firestore.collection('users').doc(authResult.user!.uid).set(userData);
+
+      // Retrieve the user data from Firestore after it has been saved
+      final userDoc = await _firestore.collection('users').doc(authResult.user!.uid).get();
+      return UserModel.fromFirestore(userDoc);
     } catch (e) {
       throw Exception("failed to save user");
     }
+  }
+
+  @override
+  Future<void> updateUserLocation({required String uid, required double lng, required double lat}) async {
+    _firestore.collection('users').doc(uid).update({
+      "latitude": lat,
+      "longitude": lng,
+    });
+  }
+
+  @override
+  Future<void> updateUser({required UserModel currentUser}) async {
+    _firestore.collection("users").doc(currentUser.uid).update({
+      "name": currentUser.name,
+    });
   }
 }
