@@ -1,13 +1,28 @@
 import 'package:adoptini_app/auth/domain/usecases/logout_usecase.dart';
 import 'package:adoptini_app/auth/domain/usecases/register_usecase.dart';
 import 'package:adoptini_app/auth/domain/usecases/start_app_usecase.dart';
+import 'package:adoptini_app/auth/domain/usecases/update_user_location_usecase.dart';
+import 'package:adoptini_app/auth/domain/usecases/update_user_usercase.dart';
 import 'package:adoptini_app/auth/presentation/cubit/auth_cubit.dart';
 import 'package:adoptini_app/auth/presentation/cubit/user/user_cubit.dart';
 import 'package:adoptini_app/common/adoptini_router.dart';
-import 'package:adoptini_app/common/config.dart';
+import 'package:adoptini_app/core/home/domain/usecases/add_pet_to_favorites_usecase.dart';
 import 'package:adoptini_app/core/home/domain/usecases/add_pet_usecase.dart';
+import 'package:adoptini_app/core/home/domain/usecases/delete_pet_usecase.dart';
+import 'package:adoptini_app/core/home/domain/usecases/fetch_conversations_usecase.dart';
+import 'package:adoptini_app/core/home/domain/usecases/fetch_favorites_usecase.dart';
 import 'package:adoptini_app/core/home/domain/usecases/fetch_pet_usecase.dart';
-import 'package:adoptini_app/core/home/presentation/cubit/pet_cubit.dart';
+import 'package:adoptini_app/core/home/domain/usecases/listen_to_messages_usecase.dart';
+import 'package:adoptini_app/core/home/domain/usecases/remove_pet_from_favorites_usecase.dart';
+import 'package:adoptini_app/core/home/domain/usecases/send_msg_about_pet_usercase.dart';
+import 'package:adoptini_app/core/home/domain/usecases/send_msg_usecase.dart';
+import 'package:adoptini_app/core/home/presentation/cubit/messages_cubit/messages_cubit.dart';
+import 'package:adoptini_app/core/home/presentation/cubit/pet_cubit/pet_cubit.dart';
+import 'package:adoptini_app/core/settings/domain/usecases/create_ticket_usecase.dart';
+import 'package:adoptini_app/core/settings/domain/usecases/get_settings_usecase.dart';
+import 'package:adoptini_app/core/settings/domain/usecases/set_settings_usecase.dart';
+import 'package:adoptini_app/core/settings/presentation/cubit/settings_cubit/settings_cubit.dart';
+import 'package:adoptini_app/core/settings/presentation/cubit/tickets_cubit/tickets_cubit.dart';
 import 'package:adoptini_app/injectable.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -75,12 +90,37 @@ class _AppState extends State<App> with WidgetsBindingObserver {
           create: (context) => UserCubit(
             locator.get<StartAppUsecase>(),
             locator.get<LogoutUseCase>(),
+            locator.get<UpdateUserLocationUsecase>(),
+            locator.get<UpdateUserUsecase>(),
+          ),
+        ),
+        BlocProvider<SettingsCubit>(
+          create: (context) => SettingsCubit(
+            locator.get<GetSettingsUseCase>(),
+            locator.get<SetSettingsUseCase>(),
+          )..getSettings(),
+        ),
+        BlocProvider<TicketsCubit>(
+          create: (context) => TicketsCubit(
+            locator.get<CreateTicketUseCase>(),
           ),
         ),
         BlocProvider<PetCubit>(
           create: (context) => PetCubit(
             locator.get<AddPetUsecase>(),
             locator.get<FetchPetUsecase>(),
+            locator.get<AddPetToFavoritesUsecase>(),
+            locator.get<FetchFavoritesUsecase>(),
+            locator.get<RemovePetFromFavoritesUsecase>(),
+            locator.get<DeletePetUsecase>(),
+          ),
+        ),
+        BlocProvider<MessagesCubit>(
+          create: (context) => MessagesCubit(
+            locator.get<SendMsgAboutPetUsecase>(),
+            locator.get<FetchConversationsUsecase>(),
+            locator.get<MessagesUsecase>(),
+            locator.get<SendMsgUsecase>(),
           ),
         ),
       ],
@@ -97,10 +137,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: context.supportedLocales,
                 locale: context.locale,
-                theme: appTheme.lightTheme,
-                // darkTheme: appTheme.darkTheme,
-                themeMode: appTheme.currentTheme(),
-                initialRoute: AdoptiniRouter.splash,
+                initialRoute: AdoptiniRouter.splashScreen,
                 onGenerateRoute: AdoptiniRouter.onGenerateRoute,
                 navigatorKey: navigatorKey,
               );
