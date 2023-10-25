@@ -24,12 +24,14 @@ class RegisterUsecase {
         uid: uid.toString(),
         name: name,
         email: email,
+        longitude: locationData.longitude,
+        latitude: locationData.latitude,
         city: city,
         country: country,
       );
-      await _authRepository.registerUser(user: userModel, password: password);
+      final myUser =await _authRepository.registerUser(user: userModel, password: password);
 
-      return userModel;
+      return myUser;
     } else {
       throw Exception('Failed to save user ');
     }

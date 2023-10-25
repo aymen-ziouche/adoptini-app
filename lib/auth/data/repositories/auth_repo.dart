@@ -28,6 +28,7 @@ class AuthRepo implements BaseAuthRepo {
   @override
   Future<UserModel> registerUser({required UserModel user, required String password}) async {
     UserModel myUser = await remoteUserDB.saveUser(user: user, password: password);
+    print("uid => ${myUser.uid}");
     await _userDB.saveUser(myUser);
     return myUser;
   }
@@ -61,5 +62,19 @@ class AuthRepo implements BaseAuthRepo {
       Sentry.captureException(e);
       return null;
     }
+  }
+
+  @override
+  Future<void> updateUserLocation({required String uid, required double lng, required double lat}) async {
+    await remoteUserDB.updateUserLocation(
+      uid: uid,
+      lng: lng,
+      lat: lat,
+    );
+  }
+
+  @override
+  Future<void> updateUser({required UserModel currentUser}) async {
+    await remoteUserDB.updateUser(currentUser: currentUser);
   }
 }

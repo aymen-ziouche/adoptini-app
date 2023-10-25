@@ -1,28 +1,14 @@
 part of 'user_cubit.dart';
 
-abstract class UserState extends Equatable {
-  const UserState();
 
-  @override
-  List<Object> get props => [];
-}
-
-class UserStateLoading extends UserState {}
-
-class UserStateNotLoggedIn extends UserState {}
-
-class UserStateLoggedIn extends UserState {
-  final UserModel user;
-  const UserStateLoggedIn(this.user);
-  @override
-  List<Object> get props => [user];
-}
-
-class UserProfileCreated extends UserState {}
-
-class UserErrorState extends UserState {
-  final String errorMessage;
-  const UserErrorState(this.errorMessage);
-  @override
-  List<Object> get props => [errorMessage];
+@freezed
+class UserState with _$UserState {
+  const factory UserState.initial() = _Initial;
+  const factory UserState.loading() = _Loading;
+  const factory UserState.userNotLoggedIn() = _UserNotLoggedIn;
+  const factory UserState.userLoggedIn(UserModel user) = _UserLoggedIn;
+  const factory UserState.error({required String errorMessage}) = _Error;
+  const factory UserState.updatingLocation() = _UpdatingLocation;
+  const factory UserState.updatedLocation() = _UpdatedLocation;
+  const factory UserState.userUpdated(UserModel user) = _UserUpdated;
 }

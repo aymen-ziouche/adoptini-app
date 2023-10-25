@@ -32,13 +32,23 @@ const UserModelSchema = CollectionSchema(
       name: r'email',
       type: IsarType.string,
     ),
-    r'name': PropertySchema(
+    r'latitude': PropertySchema(
       id: 3,
+      name: r'latitude',
+      type: IsarType.double,
+    ),
+    r'longitude': PropertySchema(
+      id: 4,
+      name: r'longitude',
+      type: IsarType.double,
+    ),
+    r'name': PropertySchema(
+      id: 5,
       name: r'name',
       type: IsarType.string,
     ),
     r'uid': PropertySchema(
-      id: 4,
+      id: 6,
       name: r'uid',
       type: IsarType.string,
     )
@@ -80,8 +90,10 @@ void _userModelSerialize(
   writer.writeString(offsets[0], object.city);
   writer.writeString(offsets[1], object.country);
   writer.writeString(offsets[2], object.email);
-  writer.writeString(offsets[3], object.name);
-  writer.writeString(offsets[4], object.uid);
+  writer.writeDouble(offsets[3], object.latitude);
+  writer.writeDouble(offsets[4], object.longitude);
+  writer.writeString(offsets[5], object.name);
+  writer.writeString(offsets[6], object.uid);
 }
 
 UserModel _userModelDeserialize(
@@ -95,8 +107,10 @@ UserModel _userModelDeserialize(
     country: reader.readString(offsets[1]),
     email: reader.readString(offsets[2]),
     id: id,
-    name: reader.readString(offsets[3]),
-    uid: reader.readString(offsets[4]),
+    latitude: reader.readDouble(offsets[3]),
+    longitude: reader.readDouble(offsets[4]),
+    name: reader.readString(offsets[5]),
+    uid: reader.readString(offsets[6]),
   );
   return object;
 }
@@ -115,8 +129,12 @@ P _userModelDeserializeProp<P>(
     case 2:
       return (reader.readString(offset)) as P;
     case 3:
-      return (reader.readString(offset)) as P;
+      return (reader.readDouble(offset)) as P;
     case 4:
+      return (reader.readDouble(offset)) as P;
+    case 5:
+      return (reader.readString(offset)) as P;
+    case 6:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -656,6 +674,131 @@ extension UserModelQueryFilter
     });
   }
 
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> latitudeEqualTo(
+    double value, {
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'latitude',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> latitudeGreaterThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'latitude',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> latitudeLessThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'latitude',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> latitudeBetween(
+    double lower,
+    double upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'latitude',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> longitudeEqualTo(
+    double value, {
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'longitude',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition>
+      longitudeGreaterThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'longitude',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> longitudeLessThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'longitude',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<UserModel, UserModel, QAfterFilterCondition> longitudeBetween(
+    double lower,
+    double upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'longitude',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
   QueryBuilder<UserModel, UserModel, QAfterFilterCondition> nameEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -960,6 +1103,30 @@ extension UserModelQuerySortBy on QueryBuilder<UserModel, UserModel, QSortBy> {
     });
   }
 
+  QueryBuilder<UserModel, UserModel, QAfterSortBy> sortByLatitude() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'latitude', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserModel, UserModel, QAfterSortBy> sortByLatitudeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'latitude', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserModel, UserModel, QAfterSortBy> sortByLongitude() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'longitude', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserModel, UserModel, QAfterSortBy> sortByLongitudeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'longitude', Sort.desc);
+    });
+  }
+
   QueryBuilder<UserModel, UserModel, QAfterSortBy> sortByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
@@ -1035,6 +1202,30 @@ extension UserModelQuerySortThenBy
     });
   }
 
+  QueryBuilder<UserModel, UserModel, QAfterSortBy> thenByLatitude() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'latitude', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserModel, UserModel, QAfterSortBy> thenByLatitudeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'latitude', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserModel, UserModel, QAfterSortBy> thenByLongitude() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'longitude', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserModel, UserModel, QAfterSortBy> thenByLongitudeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'longitude', Sort.desc);
+    });
+  }
+
   QueryBuilder<UserModel, UserModel, QAfterSortBy> thenByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
@@ -1083,6 +1274,18 @@ extension UserModelQueryWhereDistinct
     });
   }
 
+  QueryBuilder<UserModel, UserModel, QDistinct> distinctByLatitude() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'latitude');
+    });
+  }
+
+  QueryBuilder<UserModel, UserModel, QDistinct> distinctByLongitude() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'longitude');
+    });
+  }
+
   QueryBuilder<UserModel, UserModel, QDistinct> distinctByName(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1121,6 +1324,18 @@ extension UserModelQueryProperty
   QueryBuilder<UserModel, String, QQueryOperations> emailProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'email');
+    });
+  }
+
+  QueryBuilder<UserModel, double, QQueryOperations> latitudeProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'latitude');
+    });
+  }
+
+  QueryBuilder<UserModel, double, QQueryOperations> longitudeProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'longitude');
     });
   }
 
