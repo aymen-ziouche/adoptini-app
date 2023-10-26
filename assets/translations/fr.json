@@ -132,5 +132,7 @@
     "user_data_not_found": "Données utilisateur non trouvées",
     "location_data_not_found": "Données de localisation non trouvées",
     "failed_to_fetch_location_data": "Échec de la récupération des données de localisation",
-    "error_getting_location": "Erreur lors de l'obtention de la localisation :"
+    "error_getting_location": "Erreur lors de l'obtention de la localisation :",
+    "loggingIn": "Veuillez patienter pendant que nous vous connectons",
+    "registering": "Veuillez patienter pendant que nous créons votre compte"
 }

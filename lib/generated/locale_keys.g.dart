@@ -135,5 +135,7 @@ abstract class  LocaleKeys {
   static const location_data_not_found = 'location_data_not_found';
   static const failed_to_fetch_location_data = 'failed_to_fetch_location_data';
   static const error_getting_location = 'error_getting_location';
+  static const loggingIn = 'loggingIn';
+  static const registering = 'registering';
 
 }

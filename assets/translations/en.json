@@ -132,5 +132,7 @@
     "user_data_not_found": "User data not found",
     "location_data_not_found": "Location data not found",
     "failed_to_fetch_location_data": "Failed to fetch location data",
-    "error_getting_location": "Error getting location: "
+    "error_getting_location": "Error getting location: ",
+    "loggingIn":"Please Wait until we log you in",
+    "registering":"Please Wait until we create your account"
 }

@@ -132,5 +132,7 @@
     "user_data_not_found": "بيانات المستخدم غير موجودة",
     "location_data_not_found": "بيانات الموقع غير موجودة",
     "failed_to_fetch_location_data": "فشل في جلب بيانات الموقع",
-    "error_getting_location": "خطأ في الحصول على الموقع: "
+    "error_getting_location": "خطأ في الحصول على الموقع: ",
+    "loggingIn": "يرجى الانتظار حتى نقوم بتسجيل الدخول لك",
+    "registering": "يرجى الانتظار حتى نقوم بإنشاء حسابك"
 }

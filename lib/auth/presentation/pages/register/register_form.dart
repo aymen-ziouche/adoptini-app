@@ -62,8 +62,31 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
         state.whenOrNull(
           registersuccess: (user) {
             context.read<UserCubit>().setUser(user);
+            Navigator.of(context).pop();
 
             Navigator.of(context).pushNamed(AdoptiniRouter.homeScreen);
+          },
+          registering: () {
+            AdoptiniDialog(context,
+                mainButton: TextButton(
+                  style: const ButtonStyle(
+                    splashFactory: NoSplash.splashFactory,
+                    overlayColor: MaterialStatePropertyAll(Colors.transparent),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    LocaleKeys.close.tr(),
+                    style: AppTheme.bodyTextSmall
+                        .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
+                  ),
+                ),
+                title: LocaleKeys.registering.tr(),
+                description: LocaleKeys.please_wait.tr(),
+                header: CircularProgressIndicator(
+                  color: Colors.white,
+                )).show();
           },
           error: (errorMessage) {
             AdoptiniDialog(
