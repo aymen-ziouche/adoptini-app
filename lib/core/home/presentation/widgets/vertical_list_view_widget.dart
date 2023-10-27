@@ -34,8 +34,8 @@ class VerticalListViewWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(
-                height: 200.h,
-                width: 150.w,
+                height: 180.h,
+                width: 130.w,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                   child: CachedNetworkImage(
@@ -70,7 +70,7 @@ class VerticalListViewWidget extends StatelessWidget {
                     InfoRow(label: LocaleKeys.size.tr(), value: pet.size),
                     InfoRow(label: LocaleKeys.city.tr(), value: pet.city),
                     InfoRow(label: LocaleKeys.country.tr(), value: pet.country),
-                    InfoRow(label: LocaleKeys.type.tr(), value: pet.type),
+                    InfoRow(label: LocaleKeys.petType.tr(), value: pet.type),
                   ],
                 ),
               ),
@@ -94,21 +94,23 @@ class InfoRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 3),
-      child: Row(
-        children: [
-          Text(
-            label,
-            style: GoogleFonts.lemonada(fontSize: 18, color: AdoptiniColors.accentColor),
-          ),
-          SizedBox(width: 5.w),
-          FittedBox(
-            child: Text(
-              value,
-              style: GoogleFonts.lemonada(fontSize: 15, color: AdoptiniColors.accentColor),
-              overflow: TextOverflow.clip,
+      child: FittedBox(
+        child: Row(
+          children: [
+            Text(
+              label,
+              style: GoogleFonts.lemonada(fontSize: 18, color: AdoptiniColors.accentColor),
             ),
-          ),
-        ],
+            SizedBox(width: 5.w),
+            FittedBox(
+              child: Text(
+                value,
+                style: GoogleFonts.lemonada(fontSize: 15, color: AdoptiniColors.accentColor),
+                overflow: TextOverflow.clip,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -60,6 +60,7 @@
     "city": "Ville :",
     "country": "Pays :",
     "petLocation": "Emplacement de l'animal :",
+    "petType": "Type:",
     "choose_image": "Choisir une image !",
     "no_image_selected": "Aucune image sélectionnée",
     "add_pet": "Ajouter un animal",

@@ -60,6 +60,7 @@
     "city": "City:",
     "country": "Country:",
     "petLocation": "Location:",
+    "petType": "Type:",
     "choose_image": "Choose an Image !",
     "no_image_selected": "No image selected",
     "add_pet": "Add Pet",

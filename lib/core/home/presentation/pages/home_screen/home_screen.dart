@@ -392,12 +392,18 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildFilterContainer(PetType filter) {
     final isActive = selectedFilter == filter;
-    final filterText = filter == PetType.all ? 'All' : filter.toString().split('.').last.tr();
-
+    final filterText = filter == PetType.all
+        ? PetType.all.tr()
+        : filter == PetType.other
+            ? PetType.other.tr()
+            : filter.toString().split('.').last.tr();
     return GestureDetector(
       onTap: () {
         setState(() {
+          print(" FILTER => ${filter}");
+          print(" FILTERTEXT ==> ${filterText}");
           selectedFilter = filter;
+          print(" selectedFilter ==> ${selectedFilter}");
         });
       },
       child: Container(

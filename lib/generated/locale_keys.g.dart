@@ -62,6 +62,7 @@ abstract class  LocaleKeys {
   static const city = 'city';
   static const country = 'country';
   static const petLocation = 'petLocation';
+  static const petType = 'petType';
   static const choose_image = 'choose_image';
   static const no_image_selected = 'no_image_selected';
   static const add_pet = 'add_pet';
