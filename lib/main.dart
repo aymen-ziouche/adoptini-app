@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:adoptini_app/utils/ticket_function.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 void main() async {
@@ -34,17 +35,20 @@ void main() async {
       options.dsn = 'https://af4c188afe625de5df5f0ef2ddb6bf35@o4505891090726912.ingest.sentry.io/4505891092299776';
       options.tracesSampleRate = 1.0;
     },
-    appRunner: () => runApp(
-      EasyLocalization(
-        supportedLocales: const [
-          Locale('en'),
-          Locale('fr'),
-          Locale('ar'),
-        ],
-        path: 'assets/translations',
-        fallbackLocale: const Locale('en'),
-        child: const App(),
-      ),
-    ),
+    appRunner: () async {
+      runApp(
+        EasyLocalization(
+          supportedLocales: const [
+            Locale('en'),
+            Locale('fr'),
+            Locale('ar'),
+          ],
+          path: 'assets/translations',
+          fallbackLocale: const Locale('en'),
+          child: const App(),
+        ),
+      );
+      await listenToNewTickets();
+    }
   );
 }
