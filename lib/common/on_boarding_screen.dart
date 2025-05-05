@@ -23,7 +23,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            height: 100.h,
+            height: 120.h,
           ),
           SizedBox(
             height: 200.h,
@@ -33,66 +33,68 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             ),
           ),
           SizedBox(
-            height: 100.h,
+            height: 130.h,
           ),
           Expanded(
-            child: Container(
-              width: double.infinity,
-              height: 200.h, // Adjust the height as needed
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(130.w),
-                  topRight: Radius.circular(130.w),
+            child: SizedBox(
+              child: Container(
+                width: double.infinity,
+                height: 180.h, // Adjust the height as needed
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(130.w),
+                    topRight: Radius.circular(130.w),
+                  ),
+                  color: AdoptiniColors.mainColor,
                 ),
-                color: AdoptiniColors.mainColor,
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(top: 50, bottom: 25),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    Text(
-                      LocaleKeys.onBoarding_title.tr(),
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.lemon(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Text(
-                      LocaleKeys.onBoardin_Subtitle.tr(),
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.lemon(
-                        color: Colors.white.withOpacity(0.9),
-                        fontSize: 15,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 50, bottom: 25, right: 20, left: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 10.h,
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(context, AdoptiniRouter.loginScreen);
-                      },
-                      child: Container(
-                        margin: EdgeInsets.only(top: 40.h, left: 40.h, right: 40.h),
-                        height: 48.h,
-                        decoration: BoxDecoration(
-                          color: Color(0xff5E592D),
-                          borderRadius: BorderRadius.circular(10),
+                      Text(
+                        LocaleKeys.onBoarding_title.tr(),
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.lemon(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Text(
+                        LocaleKeys.onBoardin_Subtitle.tr(),
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.lemon(
+                          color: Colors.white.withOpacity(0.9),
+                          fontSize: 15,
                         ),
-                        child: Center(
-                          child: Text(
-                            LocaleKeys.onBoardingCTA.tr(),
-                            style: GoogleFonts.lemon(
-                              color: Colors.white.withOpacity(0.8),
-                              fontSize: 20,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacementNamed(context, AdoptiniRouter.loginScreen);
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(top: 40.h, left: 40.h, right: 40.h),
+                          height: 48.h,
+                          decoration: BoxDecoration(
+                            color: Color(0xff5E592D),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Center(
+                            child: Text(
+                              LocaleKeys.onBoardingCTA.tr(),
+                              style: GoogleFonts.lemon(
+                                color: Colors.white.withOpacity(0.8),
+                                fontSize: 20,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

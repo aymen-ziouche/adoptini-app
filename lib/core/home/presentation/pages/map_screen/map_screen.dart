@@ -112,19 +112,18 @@ class _MapScreenState extends State<MapScreen> {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      return Future.error(LocaleKeys.location_disabled.tr());
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
+      permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
-        return Future.error(LocaleKeys.location_permission_denied.tr());
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          return Future.error(LocaleKeys.location_permission_denied.tr());
+        }
       }
-    }
 
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error(LocaleKeys.location_permission_denied_permanetly.tr());
+      if (permission == LocationPermission.deniedForever) {
+        return Future.error(LocaleKeys.location_permission_denied_permanetly.tr());
+        // return Future.error(LocaleKeys.location_disabled.tr());
+      }
     }
 
     Position res = await Geolocator.getCurrentPosition();

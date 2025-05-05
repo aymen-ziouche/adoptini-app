@@ -5,6 +5,7 @@ import 'package:adoptini_app/common/enums.dart';
 import 'package:adoptini_app/core/home/data/models/pet_model.dart';
 import 'package:adoptini_app/core/home/presentation/cubit/messages_cubit/messages_cubit.dart';
 import 'package:adoptini_app/core/home/presentation/cubit/pet_cubit/pet_cubit.dart';
+import 'package:adoptini_app/core/home/presentation/widgets/adWidget.dart';
 import 'package:adoptini_app/core/home/presentation/widgets/adoptini_drawer.dart';
 import 'package:adoptini_app/auth/presentation/cubit/user/user_cubit.dart';
 import 'package:adoptini_app/common/theme/adoptini_colors.dart';
@@ -51,7 +52,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     _controller.close();
-
     super.dispose();
   }
 
@@ -60,7 +60,6 @@ class _HomePageState extends State<HomePage> {
     _settingsCubit = context.read<SettingsCubit>();
     _settingsCubit.settings!.copyWith(firstUse: false);
     await context.read<PetCubit>().fetchPets();
-
     setState(() {
       localPets = [];
       otherPets = [];
@@ -95,81 +94,42 @@ class _HomePageState extends State<HomePage> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0).copyWith(right: 15),
-            child: Row(
-              children: [
-                Container(
-                  height: 60.h,
-                  width: 40.w,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Icon(
-                        FontAwesomeIcons.solidBell,
-                        size: 30,
-                      ),
-                      if (unreadCount > 0)
-                        Positioned(
-                          top: 0,
-                          right: 0,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.red.withOpacity(0.8),
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            padding: EdgeInsets.all(3),
-                            child: Text(
-                              unreadCount.toString(),
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 10.w,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, AdoptiniRouter.messagesScreen);
-                  },
-                  child: Container(
-                    height: 60.h,
-                    width: 40.w,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Icon(
-                          FontAwesomeIcons.message,
-                          size: 30,
-                        ),
-                        if (unreadCount > 0)
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.red.withOpacity(0.8),
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              padding: EdgeInsets.all(3),
-                              child: Text(
-                                unreadCount.toString(),
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                      ],
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, AdoptiniRouter.messagesScreen);
+              },
+              child: Container(
+                height: 60.h,
+                width: 40.w,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Icon(
+                      FontAwesomeIcons.solidMessage,
+                      size: 30,
                     ),
-                  ),
+                    if (unreadCount > 0)
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.red.withOpacity(0.8),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          padding: EdgeInsets.all(3),
+                          child: Text(
+                            unreadCount.toString(),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ],
@@ -177,6 +137,9 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  int adFrequency = 7; // Show an ad after every 5 pets
+  int numberOfPets = 0;
+  int additionalAds = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -196,6 +159,8 @@ class _HomePageState extends State<HomePage> {
                 otherPets = loadedPets.where((pet) {
                   return pet.city != _userCubit.user!.city;
                 }).toList();
+                numberOfPets = otherPets.length;
+                additionalAds = (numberOfPets / adFrequency).ceil();
               },
             );
           },
@@ -216,15 +181,16 @@ class _HomePageState extends State<HomePage> {
                               "assets/images/homeBackground.png",
                               width: double.infinity,
                               fit: BoxFit.cover,
+                              height: 90.h,
                             ),
                             Container(
-                              margin: const EdgeInsets.only(top: 50),
+                              margin: const EdgeInsets.only(top: 40),
                               alignment: Alignment.center,
                               child: Text(
                                 "Adoptini",
                                 style: GoogleFonts.lemon(
                                   color: AdoptiniColors.mainColor,
-                                  fontSize: 31,
+                                  fontSize: 28,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -266,7 +232,7 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           "${LocaleKeys.pets_in.tr()} ${_userCubit.user!.city}, ${_userCubit.user!.country} ${LocaleKeys.for_adoption.tr()}",
                           textAlign: TextAlign.center,
-                          style: GoogleFonts.lemon(color: const Color(0xff5E592D), fontSize: 16),
+                          style: GoogleFonts.lemon(color: const Color(0xff5E592D), fontSize: 14),
                         ),
                         SizedBox(
                           height: 10.h,
@@ -276,7 +242,7 @@ class _HomePageState extends State<HomePage> {
                                 localPets
                                     .any((pet) => pet.type == selectedFilter.toString().split('.').last.tr())))
                           SizedBox(
-                            height: 260.h,
+                            height: 200.h,
                             child: ListView.builder(
                               itemCount: localPets.length,
                               scrollDirection: Axis.horizontal,
@@ -300,7 +266,7 @@ class _HomePageState extends State<HomePage> {
                           )
                         else
                           SizedBox(
-                            height: 260.h,
+                            height: 200.h,
                             child: Center(
                               child: Text(
                                 LocaleKeys.no_pets_found.tr(),
@@ -310,9 +276,6 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                           ),
-                        SizedBox(
-                          height: 10.h,
-                        ),
                         Text(
                           LocaleKeys.other_pets.tr(),
                           textAlign: TextAlign.center,
@@ -331,22 +294,39 @@ class _HomePageState extends State<HomePage> {
                             child: ListView.builder(
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
-                              itemCount: otherPets.length,
+                              itemCount: numberOfPets + additionalAds, // Total count including ads
+
                               itemBuilder: (context, index) {
-                                PetModel pet = otherPets[index];
-                                if (selectedFilter != PetType.all &&
-                                    pet.type != selectedFilter.toString().split('.').last.tr()) {
+                                // Calculate the correct index of the pet data
+                                // by subtracting the number of ads that have appeared before this index
+                                int actualIndex = index - (index / (adFrequency + 1)).floor();
+
+                                // Check if the current index is where an ad should be placed
+                                if ((index + 1) % (adFrequency + 1) == 0) {
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                                    child: MyAdWidget(),
+                                  );
+                                } else if (actualIndex < numberOfPets) {
+                                  // Access your pet data correctly by using `actualIndex`
+                                  PetModel pet = otherPets[actualIndex];
+                                  if (selectedFilter != PetType.all &&
+                                      pet.type != selectedFilter.toString().split('.').last.tr()) {
+                                    return SizedBox.shrink();
+                                  }
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(context, AdoptiniRouter.petScreen, arguments: pet);
+                                      },
+                                      child: VerticalListViewWidget(pet: pet),
+                                    ),
+                                  );
+                                } else {
+                                  // This case is an edge case in scenarios where the list ends but the ad's position is calculated
                                   return SizedBox.shrink();
                                 }
-                                return Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.pushNamed(context, AdoptiniRouter.petScreen, arguments: pet);
-                                    },
-                                    child: VerticalListViewWidget(pet: pet),
-                                  ),
-                                );
                               },
                             ),
                           )
@@ -408,7 +388,7 @@ class _HomePageState extends State<HomePage> {
       },
       child: Container(
         margin: const EdgeInsets.all(5),
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
         decoration: BoxDecoration(
           color: isActive ? AdoptiniColors.mainColor : AdoptiniColors.mainColor.withOpacity(0.3),
           borderRadius: BorderRadius.circular(10),

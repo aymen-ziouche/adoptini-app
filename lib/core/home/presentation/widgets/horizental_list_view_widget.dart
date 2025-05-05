@@ -17,21 +17,21 @@ class HorizentalListViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 220.h,
-      width: 200.w,
+      height: 150.h,
+      width: 130.w,
       decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),
       child: Column(
         children: [
           SizedBox(
-            height: 200.h,
-            width: 180.w,
+            height: 130.h,
+            width: 110.w,
             child: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
                 child: CachedNetworkImage(
                   imageUrl: pet.image,
                   fit: BoxFit.cover,
-                  width: 180.w,
-                  height: 200.h,
+                  width: 130.w,
+                  height: 110.h,
                   progressIndicatorBuilder: (context, url, downloadProgress) => SizedBox(
                     height: 50.h,
                     width: 50.w,
@@ -53,8 +53,16 @@ class HorizentalListViewWidget extends StatelessWidget {
                     style: GoogleFonts.lemonada(fontSize: 18, color: AdoptiniColors.accentColor),
                   ),
                   pet.gender == "male"
-                      ? const Icon(FontAwesomeIcons.mars, color: AdoptiniColors.accentColor)
-                      : const Icon(FontAwesomeIcons.venus, color: AdoptiniColors.accentColor),
+                      ? const Icon(
+                          FontAwesomeIcons.mars,
+                          color: AdoptiniColors.accentColor,
+                          size: 20,
+                        )
+                      : const Icon(
+                          FontAwesomeIcons.venus,
+                          color: AdoptiniColors.accentColor,
+                          size: 20,
+                        ),
                 ],
               ),
             ),

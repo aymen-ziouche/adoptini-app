@@ -9,6 +9,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 void main() async {
@@ -18,8 +19,8 @@ void main() async {
   await Firebase.initializeApp();
   await configInjections();
   await Geolocator.requestPermission();
+  await MobileAds.instance.initialize();
   await dotenv.load(fileName: ".env");
-
 
   setupLocator();
   await PackageInfoWrapper.instance.init();

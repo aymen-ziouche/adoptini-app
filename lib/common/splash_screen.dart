@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   }
 
   @override
-  void dispose() {
+    void dispose() {
     _animationController.dispose();
     super.dispose();
   }

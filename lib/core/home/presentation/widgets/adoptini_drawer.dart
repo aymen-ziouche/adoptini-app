@@ -34,50 +34,52 @@ class AdoptiniDrawer extends StatelessWidget {
               LocaleKeys.onBoarding_title.tr(),
               style: GoogleFonts.lemon(
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 18,
               ),
             ),
             SizedBox(
-              height: 40.h,
+              height: 35.h,
             ),
             GestureDetector(
               onTap: () {
                 Navigator.of(context).pushNamed(AdoptiniRouter.profileScreen);
               },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const CircleAvatar(
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage(
-                      "assets/images/profile.png",
+              child: SizedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CircleAvatar(
+                      backgroundColor: Colors.white,
+                      backgroundImage: AssetImage(
+                        "assets/images/profile.png",
+                      ),
+                      radius: 35,
                     ),
-                    radius: 40,
-                  ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        _userCubit.user!.name,
-                        style: GoogleFonts.leagueSpartan(
-                            color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
-                      ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      Text(
-                        _userCubit.user!.email,
-                        style: GoogleFonts.leagueSpartan(
-                          color: Colors.black,
-                          fontSize: 14,
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          _userCubit.user!.name,
+                          style: GoogleFonts.leagueSpartan(
+                              color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Text(
+                          _userCubit.user!.email,
+                          style: GoogleFonts.leagueSpartan(
+                            color: Colors.black,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
             SizedBox(
@@ -112,7 +114,7 @@ class AdoptiniDrawer extends StatelessWidget {
                 icon: FontAwesomeIcons.gear,
                 text: LocaleKeys.settings.tr(),
                 onTap: () {
-                  Navigator.of(context).pushNamed(AdoptiniRouter.settingsScreen);
+                  Navigator.of(context).pushReplacementNamed(AdoptiniRouter.settingsScreen);
                 }),
             // DrawerListItem(icon: FontAwesomeIcons.message, text: "Messages", onTap: () {}),
             DrawerListItem(

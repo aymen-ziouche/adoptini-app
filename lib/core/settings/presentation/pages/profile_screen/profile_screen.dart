@@ -61,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           leading: IconButton(
             icon: const Icon(FontAwesomeIcons.arrowLeft),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.of(context).pushReplacementNamed(AdoptiniRouter.homeScreen);
             },
           ),
         ),
@@ -86,11 +86,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         Container(
                           width: 600,
-                          height: 800,
+                          height: 600,
                           child: background(),
                         ),
                         Positioned(
-                          bottom: -190,
+                          bottom: -230,
                           left: -200,
                           child: Transform.flip(
                             flipX: true,
@@ -108,7 +108,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               SizedBox(
-                                height: 80.h,
+                                height: 60.h,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -131,7 +131,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     icon: Icon(FontAwesomeIcons.penToSquare),
                                     color: AdoptiniColors.mainColor,
                                     onPressed: () {
-                                      Navigator.pushNamed(context, AdoptiniRouter.editProfileScreen);
+                                      Navigator.pushReplacementNamed(context, AdoptiniRouter.editProfileScreen);
                                     },
                                   ),
                                 ],
@@ -181,7 +181,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 },
                               ),
                               SizedBox(
-                                height: 70.h,
+                                height: 90.h,
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(10.0),
@@ -190,9 +190,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   children: [
                                     GestureDetector(
                                       onTap: () {
-                                        Navigator.popUntil(
+                                        Navigator.pushReplacementNamed(
                                           context,
-                                          ModalRoute.withName(AdoptiniRouter.homeScreen),
+                                          AdoptiniRouter.homeScreen,
                                         );
                                       },
                                       child: Container(
@@ -243,7 +243,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             padding: const EdgeInsets.all(8.0).copyWith(top: 25),
                                             child: GestureDetector(
                                               onTap: () {
-                                                Navigator.of(context).pop();
+                                                Navigator.of(context)
+                                                    .pushReplacementNamed(AdoptiniRouter.homeScreen);
                                               },
                                               child: Container(
                                                 padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
@@ -262,7 +263,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             ),
                                           ),
                                           title: LocaleKeys.logout.tr(),
-
                                           description: LocaleKeys.confirm_logout.tr(),
                                           header: const Icon(
                                             FontAwesomeIcons.doorOpen,

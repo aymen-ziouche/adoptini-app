@@ -51,7 +51,7 @@ class UserCubit extends Cubit<UserState> {
   Future<void> updateUser(UserModel currentUser) async {
     try {
       emit(UserState.loading());
-      await _updateUserUsecase(
+      await _updateUserUsecase.call(
         currentUser,
       );
       _user = currentUser;

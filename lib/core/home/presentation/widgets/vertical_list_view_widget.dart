@@ -21,7 +21,7 @@ class VerticalListViewWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Container(
-        height: 200.h,
+        height: 170.h,
         width: 300.w,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -31,52 +31,50 @@ class VerticalListViewWidget extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SizedBox(
-                height: 180.h,
-                width: 130.w,
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  child: CachedNetworkImage(
-                    imageUrl: pet.image,
-                    fit: BoxFit.cover,
-                    width: 150.w,
-                    height: 150.h,
-                    progressIndicatorBuilder: (context, url, downloadProgress) => SizedBox(
-                      height: 50.h,
-                      width: 50.w,
-                      child: CircularProgressIndicator(
-                          color: AdoptiniColors.mainColor, value: downloadProgress.progress),
-                    ),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+              ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+                child: CachedNetworkImage(
+                  imageUrl: pet.image,
+                  fit: BoxFit.cover,
+                  width: 100.w,
+                  height: 150.h,
+                  progressIndicatorBuilder: (context, url, downloadProgress) => SizedBox(
+                    height: 50.h,
+                    width: 50.w,
+                    child: CircularProgressIndicator(
+                        color: AdoptiniColors.mainColor, value: downloadProgress.progress),
+                  ),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        pet.name,
+                        style: GoogleFonts.lemonada(
+                            fontSize: 15, color: AdoptiniColors.accentColor, fontWeight: FontWeight.bold),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      InfoRow(label: LocaleKeys.age.tr(), value: pet.age),
+                      InfoRow(label: LocaleKeys.size.tr(), value: pet.size),
+                      InfoRow(label: LocaleKeys.city.tr(), value: pet.city),
+                      InfoRow(label: LocaleKeys.country.tr(), value: pet.country),
+                      InfoRow(label: LocaleKeys.petType.tr(), value: pet.type),
+                    ],
                   ),
                 ),
               ),
-              FittedBox(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          pet.name,
-                          style: GoogleFonts.lemonada(fontSize: 18, color: AdoptiniColors.accentColor),
-                        ),
-                      ],
-                    ),
-                    InfoRow(label: LocaleKeys.age.tr(), value: pet.age),
-                    InfoRow(label: LocaleKeys.size.tr(), value: pet.size),
-                    InfoRow(label: LocaleKeys.city.tr(), value: pet.city),
-                    InfoRow(label: LocaleKeys.country.tr(), value: pet.country),
-                    InfoRow(label: LocaleKeys.petType.tr(), value: pet.type),
-                  ],
-                ),
+              Icon(
+                pet.gender == "male" ? FontAwesomeIcons.mars : FontAwesomeIcons.venus,
+                color: AdoptiniColors.accentColor,
+                size: 20,
               ),
-              pet.gender == "male"
-                  ? const Icon(FontAwesomeIcons.mars, color: AdoptiniColors.accentColor)
-                  : const Icon(FontAwesomeIcons.venus, color: AdoptiniColors.accentColor),
             ],
           ),
         ),
@@ -94,23 +92,24 @@ class InfoRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 3),
-      child: FittedBox(
-        child: Row(
-          children: [
-            Text(
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
               label,
-              style: GoogleFonts.lemonada(fontSize: 18, color: AdoptiniColors.accentColor),
+              style: GoogleFonts.lemonada(fontSize: 14, color: AdoptiniColors.accentColor),
+              overflow: TextOverflow.ellipsis,
             ),
-            SizedBox(width: 5.w),
-            FittedBox(
-              child: Text(
-                value,
-                style: GoogleFonts.lemonada(fontSize: 15, color: AdoptiniColors.accentColor),
-                overflow: TextOverflow.clip,
-              ),
+          ),
+          SizedBox(width: 5.w),
+          Expanded(
+            child: Text(
+              value,
+              style: GoogleFonts.lemonada(fontSize: 12, color: AdoptiniColors.accentColor),
+              overflow: TextOverflow.ellipsis,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

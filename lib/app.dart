@@ -127,7 +127,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
       child: Builder(
         builder: (context) {
           return ScreenUtilInit(
-            designSize: const Size(360, 640),
+            designSize: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height),
             builder: (BuildContext context, Widget? child) {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,

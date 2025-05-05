@@ -15,7 +15,7 @@ class DrawerListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 50.w),
+      padding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 50.w),
       child: GestureDetector(
         onTap: () {
           onTap();
@@ -32,7 +32,7 @@ class DrawerListItem extends StatelessWidget {
             ),
             Text(
               text,
-              style: const TextStyle(color: Colors.white, fontSize: 15),
+              style: const TextStyle(color: Colors.white, fontSize: 14),
             ),
           ],
         ),

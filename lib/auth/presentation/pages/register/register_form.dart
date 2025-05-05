@@ -14,6 +14,7 @@ import 'package:adoptini_app/utils/utils.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
@@ -64,7 +65,7 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
             context.read<UserCubit>().setUser(user);
             Navigator.of(context).pop();
 
-            Navigator.of(context).pushNamed(AdoptiniRouter.homeScreen);
+            Navigator.of(context).pushReplacementNamed(AdoptiniRouter.homeScreen);
           },
           registering: () {
             AdoptiniDialog(context,
@@ -292,24 +293,26 @@ class _RegisterFormState extends State<RegisterForm> with TickerProviderStateMix
                             SizedBox(
                               height: 15.h,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  LocaleKeys.already_have_account.tr(),
-                                  style: AppTheme.bodyTextSmall
-                                      .copyWith(fontSize: 18, color: Colors.black.withOpacity(0.5)),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.of(context).pushNamed(AdoptiniRouter.loginScreen);
-                                  },
-                                  child: Text(
-                                    LocaleKeys.login.tr(),
-                                    style: AppTheme.bodyTextSmall.copyWith(fontSize: 18),
+                            FittedBox(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    LocaleKeys.already_have_account.tr(),
+                                    style: AppTheme.bodyTextSmall
+                                        .copyWith(fontSize: 18, color: Colors.black.withOpacity(0.5)),
                                   ),
-                                ),
-                              ],
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context).pushReplacementNamed(AdoptiniRouter.loginScreen);
+                                    },
+                                    child: Text(
+                                      LocaleKeys.login.tr(),
+                                      style: AppTheme.bodyTextSmall.copyWith(fontSize: 18),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             SizedBox(
                               height: 20.h,

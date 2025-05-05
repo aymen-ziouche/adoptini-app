@@ -66,7 +66,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '704018466082',
     projectId: 'adoptini-a15ed',
     storageBucket: 'adoptini-a15ed.appspot.com',
-    iosBundleId: 'com.example.adoptiniApp',
+    iosBundleId: 'com.zch.adoptini',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -75,6 +75,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '704018466082',
     projectId: 'adoptini-a15ed',
     storageBucket: 'adoptini-a15ed.appspot.com',
-    iosBundleId: 'com.example.adoptiniApp.RunnerTests',
+    iosBundleId: 'com.zch.adoptini.RunnerTests',
   );
 }

@@ -55,9 +55,9 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
         backgroundColor: Colors.transparent,
         foregroundColor: AdoptiniColors.mainColor,
         leading: IconButton(
-          icon: const Icon(FontAwesomeIcons.arrowLeft),
+          icon: Icon(FontAwesomeIcons.arrowLeft),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushReplacementNamed(context, AdoptiniRouter.homeScreen);
           },
         ),
       ),
@@ -170,7 +170,6 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                     ),
                     Text(
                       LocaleKeys.account.tr(),
-                    
                       style: GoogleFonts.leagueSpartan(
                         fontSize: 28,
                       ),
@@ -241,7 +240,6 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                     ),
                     Text(
                       LocaleKeys.app_settings.tr(),
-                      
                       style: GoogleFonts.leagueSpartan(
                         fontSize: 28,
                       ),
@@ -251,7 +249,6 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                     ),
                     SettingsRowWidget(
                       title: LocaleKeys.languages.tr(),
-
                       avatarColor: AdoptiniColors.mainColor,
                       iconColor: AdoptiniColors.mainColor,
                       icon: FontAwesomeIcons.earthAmericas,
@@ -267,19 +264,19 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                         });
                       },
                     ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    SettingsRowWidget(
-                      title: LocaleKeys.notifications.tr(),
-                      avatarColor: Color(0xff96ADE8),
-                      iconColor: Color(0xff2C4BB8),
-                      icon: FontAwesomeIcons.solidBell,
-                      value: "",
-                      ontap: () {
-                        // TODO: Navigate to Notifications screen
-                      },
-                    ),
+                    // SizedBox(
+                    //   height: 20.h,
+                    // ),
+                    // SettingsRowWidget(
+                    //   title: LocaleKeys.notifications.tr(),
+                    //   avatarColor: Color(0xff96ADE8),
+                    //   iconColor: Color(0xff2C4BB8),
+                    //   icon: FontAwesomeIcons.solidBell,
+                    //   value: "",
+                    //   ontap: () {
+                    //     // TODO: Navigate to Notifications screen
+                    //   },
+                    // ),
                     SizedBox(
                       height: 20.h,
                     ),
@@ -341,8 +338,7 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
                             ),
                           ),
                           title: LocaleKeys.change_saved_location.tr(),
-                          description:
-                              LocaleKeys.confirm_change_location.tr(),
+                          description: LocaleKeys.confirm_change_location.tr(),
                           header: const Icon(
                             FontAwesomeIcons.locationDot,
                             color: Colors.white,

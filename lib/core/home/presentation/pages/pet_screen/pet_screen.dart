@@ -8,6 +8,7 @@ import 'package:adoptini_app/common/theme/main_button.dart';
 import 'package:adoptini_app/core/home/data/models/pet_model.dart';
 import 'package:adoptini_app/core/home/presentation/cubit/messages_cubit/messages_cubit.dart';
 import 'package:adoptini_app/core/home/presentation/cubit/pet_cubit/pet_cubit.dart';
+import 'package:adoptini_app/core/home/presentation/widgets/adWidget.dart';
 import 'package:adoptini_app/core/home/presentation/widgets/background_widget.dart';
 import 'package:adoptini_app/core/home/presentation/widgets/share_widget.dart';
 import 'package:adoptini_app/core/home/presentation/widgets/vertical_list_view_widget.dart';
@@ -15,6 +16,7 @@ import 'package:adoptini_app/generated/locale_keys.g.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -168,8 +170,7 @@ class _PetScreenState extends State<PetScreen> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15), border: Border.all(color: Colors.white)),
                             child: Text(
-                  LocaleKeys.cancel.tr(),
-                              
+                              LocaleKeys.cancel.tr(),
                               style: GoogleFonts.leagueSpartan(
                                 fontSize: 15,
                                 color: Colors.white,
@@ -209,7 +210,6 @@ class _PetScreenState extends State<PetScreen> {
                 },
                 child: Text(
                   LocaleKeys.close.tr(),
-                
                   style: AppTheme.bodyTextSmall
                       .copyWith(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 14.sp),
                 ),
@@ -282,17 +282,69 @@ class _PetScreenState extends State<PetScreen> {
         margin: const EdgeInsets.symmetric(
           horizontal: 15,
         ),
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10).copyWith(bottom: 0),
         child: Row(
           children: [
             Expanded(
               flex: 4,
               child: MainButton(
                   text: LocaleKeys.adopt.tr(),
-                  onTap: () {
-                    _messagesCubit.sendMsgAboutPet(widget.pet, currentUser, "Hello ${widget.pet.name}");
+                  onTap: () async {
+                    // _messagesCubit.sendMsgAboutPet(widget.pet, currentUser, "Hello ${widget.pet.name}");
+                    TextEditingController customMessageController = TextEditingController();
 
-                    print("Adopt pet");
+                    // Display the dialog to the user
+                    await showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          backgroundColor: AdoptiniColors.mainColor,
+                          title: Text(
+                            'Send a Message',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          content: TextField(
+                            controller: customMessageController,
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                              hintText: "Write your message here",
+                              hintStyle: TextStyle(color: Colors.white),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(10)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(10)),
+                            ),
+                          ),
+                          actions: <Widget>[
+                            TextButton(
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).pop(); // Close the dialog
+                              },
+                            ),
+                            TextButton(
+                              child: Text(
+                                'Send',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              onPressed: () {
+                                if (customMessageController.text.isNotEmpty) {
+                                  _messagesCubit.sendMsgAboutPet(
+                                      widget.pet, currentUser, customMessageController.text);
+                                  Navigator.of(context).pop(); // Close the dialog after sending the message
+                                }
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                    // print("Adopt pet");
                   }),
             ),
             const SizedBox(width: 10),
@@ -361,8 +413,9 @@ class AboutPet extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(width: double.infinity, child: MyAdWidget()),
             Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(15.0).copyWith(top: 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -393,7 +446,7 @@ class AboutPet extends StatelessWidget {
                   ),
                   InfoRow(label: LocaleKeys.age.tr(), value: pet.age),
                   InfoRow(label: LocaleKeys.petLocation.tr(), value: "${pet.city}, ${pet.country}"),
-                  InfoRow(label: LocaleKeys.type.tr(), value: pet.type),
+                  InfoRow(label: LocaleKeys.petType.tr(), value: pet.type),
                   InfoRow(label: LocaleKeys.size.tr(), value: pet.size),
                   SizedBox(
                     height: 5.h,
@@ -416,9 +469,9 @@ class AboutPet extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 100,
-            )
+            SizedBox(
+              height: 70.h,
+            ),
           ],
         ),
       ],

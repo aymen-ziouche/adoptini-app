@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:704018466082:android:de05a853b1bd1fa742d17b",
         "android_client_info": {
-          "package_name": "com.example.adoptini"
+          "package_name": "com.zch.adoptini"
         }
       },
       "oauth_client": [
@@ -38,7 +38,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:704018466082:android:4a85f323f9bf7eb342d17b",
         "android_client_info": {
-          "package_name": "com.example.adoptini_app"
+          "package_name": "com.zch.adoptini"
         }
       },
       "oauth_client": [

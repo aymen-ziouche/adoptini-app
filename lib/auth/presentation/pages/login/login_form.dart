@@ -59,7 +59,7 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
           loginsuccess: (user) {
             context.read<UserCubit>().setUser(user);
             Navigator.of(context).pop();
-            Navigator.of(context).pushNamed(AdoptiniRouter.homeScreen);
+            Navigator.of(context).pushReplacementNamed(AdoptiniRouter.homeScreen);
           },
           loggingIn: () {
             AdoptiniDialog(context,
@@ -84,6 +84,7 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                 )).show();
           },
           error: (errorMessage) {
+            Navigator.of(context).pop();
             AdoptiniDialog(
               context,
               mainButton: TextButton(
@@ -140,21 +141,22 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                         child: Column(
                           children: [
                             SizedBox(
-                              height: 55.h,
+                              height: 20.h,
                             ),
                             Container(
                               alignment: Alignment.center,
+                              height: 150.h,
                               child: Image.asset("assets/images/profile.png"),
                             ),
                             SizedBox(
-                              height: 40.h,
+                              height: 30.h,
                             ),
                             Text(
                               LocaleKeys.login.tr(),
                               style: AppTheme.titleTextStyle,
                             ),
                             SizedBox(
-                              height: 40.h,
+                              height: 30.h,
                             ),
                             CustomFormInputField(
                               errorText: _errorText,
@@ -251,7 +253,7 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                                 ),
                                 GestureDetector(
                                   onTap: () {
-                                    Navigator.of(context).pushNamed(AdoptiniRouter.registerScreen);
+                                    Navigator.of(context).pushReplacementNamed(AdoptiniRouter.registerScreen);
                                   },
                                   child: Text(
                                     LocaleKeys.create_account.tr(),
@@ -261,7 +263,7 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
                               ],
                             ),
                             SizedBox(
-                              height: 20.h,
+                              height: 40.h,
                             ),
                             Text(
                               "${LocaleKeys.version.tr()} ${PackageInfoWrapper.instance.version}",
